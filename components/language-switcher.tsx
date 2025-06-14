@@ -1,13 +1,30 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Globe } from "lucide-react"
-
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 
 export function LanguageSwitcher() {
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState("ar")
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem("lang")
+    if (storedLang) {
+      setLanguage(storedLang)
+    }
+  }, [])
+
+  const handleLanguageChange = (lang: string) => {
+    localStorage.setItem("lang", lang)
+    setLanguage(lang)
+    window.location.reload() // لإعادة تحميل الصفحة وتطبيق التغيير
+  }
 
   return (
     <DropdownMenu>
@@ -18,10 +35,10 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setLanguage("en")}>
+        <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
           <span className={language === "en" ? "font-bold" : ""}>English</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("ar")}>
+        <DropdownMenuItem onClick={() => handleLanguageChange("ar")}>
           <span className={language === "ar" ? "font-bold" : ""}>العربية</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

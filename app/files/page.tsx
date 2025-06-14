@@ -5,7 +5,7 @@ import Link from "next/link"
 
 const files = [
   { name: "Summer Edition", url: "/uploads/summer-edition.pdf", type: "PDF" },
-  { name: "Coloring Page", url: "/uploads/kids-activity.jpg", type: "Image" },
+  { name: "Coloring Page", url: "/uploads/kids-activite.jpg", type: "Image" },
 ]
 
 export default function FilesPage() {

@@ -4,6 +4,8 @@ import Link from "next/link"
 import { BookOpen, Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
+import Image from "next/image"
+import FloatingBox from '@/components/FloatingBox';
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,7 +13,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -42,34 +45,37 @@ export default function ContactPage() {
       {/* ... Header and Hero Section stay the same ... */}
 
       {/* Contact Form */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+      <Header />
+
+
+      <section className="py-16 bg-gradient-to-br from-blue-50 violetCustom">
         <div className="container mx-auto px-4 max-w-3xl">
           <Card className="border-4 border-purple-200 bg-white shadow-xl">
             <CardContent className="p-8">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-purple-800 font-bold">الاسم الأول *</Label>
+                    <Label htmlFor="firstName" className="violetCustom font-bold">الاسم الأول *</Label>
                     <Input id="firstName" required onChange={handleChange} value={formData.firstName} className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-purple-800 font-bold">اسم العائلة *</Label>
+                    <Label htmlFor="lastName" className="violetCustom font-bold">اسم العائلة *</Label>
                     <Input id="lastName" required onChange={handleChange} value={formData.lastName} className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-purple-800 font-bold">البريد الإلكتروني *</Label>
+                  <Label htmlFor="email" className="violetCustom font-bold">البريد الإلكتروني *</Label>
                   <Input id="email" type="email" required onChange={handleChange} value={formData.email} className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3" />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-purple-800 font-bold">رقم الهاتف</Label>
+                  <Label htmlFor="phone" className="violetCustom font-bold">رقم الهاتف</Label>
                   <Input id="phone" type="tel" onChange={handleChange} value={formData.phone} className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3" />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="subject" className="text-purple-800 font-bold">الموضوع *</Label>
+                  <Label htmlFor="subject" className="violetCustom font-bold">الموضوع *</Label>
                   <Select onValueChange={handleSelect}>
                     <SelectTrigger className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3">
                       <SelectValue placeholder="اختر الموضوع" />
@@ -86,7 +92,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-purple-800 font-bold">الرسالة *</Label>
+                  <Label htmlFor="message" className="violetCustom font-bold">الرسالة *</Label>
                   <Textarea id="message" rows={6} required onChange={handleChange} value={formData.message} placeholder="اكتب رسالتك هنا..." className="border-2 border-purple-200 focus:border-purple-500 rounded-lg p-3" />
                 </div>
 
@@ -99,6 +105,11 @@ export default function ContactPage() {
           </Card>
         </div>
       </section>
+
+
+      <FloatingBox />
+      <Footer />
+
     </div>
   )
 }

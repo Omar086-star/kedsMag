@@ -50,6 +50,7 @@
 
   * {
     @apply border-border;
+    font-family:  'cairo';
   }
 
   body {
@@ -64,5 +65,367 @@
   html[lang="en"] {
     direction: ltr;
     font-family: "Inter", sans-serif;
+  }
+  .text-force{
+    color: #fa4d00 !important;
+  }
+  .bg-none-force{
+background-color: none !important;  }
+  .text-fs-force{
+    font-size: 20px !important;
+  }
+  .bg-bx-force{
+background-color: #3a00cc !important;  }
+.c-bx-force{
+  color: #3a00cc !important;  }
+  .justfyLogo{
+    display: flex !important;
+  flex-direction: column !important;
+  }
+  .widthres2{
+    max-width:50% ;
+    display: flex;
+    justify-content: space-between;
+    border: 10px solid rgba(255, 170, 0, 0.442);
+    flex-direction: column;
+    box-shadow: inset  10px rgba(246, 173, 3, 0.46);
+border-radius: 5px;
+  }
+  .text-centres{
+    justify-content: center;
+    text-align: center;
+  }
+  .scale11:hover{
+    scale: 1.1;
+  }
+.right-100{
+right: 180px;
+top: 150px;
+}
+.bgactivite{
+  background-color: #3a00cc1e;
+}
+.nonelist{
+  list-style: none;
+}
+.widthimg{
+  width: 30%;
+  height: auto;
+}
+.imgwidth{
+  width: 100%;
+  height: auto;
+}
+.bgbr {
+  background-image: linear-gradient(to right, #fa4d00, #fca079); /* تدرج برتقالي إلى بنفسجي */
+  border: 2px solid #fa4d00;
+
+}
+.boxi{
+  box-shadow: 0 4px 10px #fa4d00 !important;
+
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(254, 123, 1, 0.638);
+  border-radius: 50%;
+  animation: rise 8s infinite ease-in;
+  z-index: 2; /* الفقاعات تظهر فوق الخلفية وتحت المحتوى */
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.bgi {
+  position: relative;
+  background-image: url("/Slider2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.bot-55{
+  bottom: -30px;
+ }
+.widthwithHover{
+  width: 100%;
+  height: 50vh;
+}
+.widthcent{
+  width: 100%;
+}
+.bgi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* overlay */
+  z-index: 1;
+}
+
+.bgi > * {
+  position: relative;
+  z-index: 3; /* المحتوى فوق كل شيء */
+}
+
+
+.bgin {
+  position: relative;
+  background-image: url("/team-cover.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+z-index: -1;
+}
+.mbot{
+    bottom:  -160px !important;
+
+}
+.ttrs{
+  font-size: 28px;
+}
+
+.bgin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.367); /* overlay */
+  z-index: 1;
+}
+
+.bginss > * {
+  position: relative;
+  z-index: 3; /* المحتوى فوق كل شيء */
+}
+.bginss {
+  position: relative;
+  background-image: url("/Aboutus.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+z-index: -1;
+}
+.bginss::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.367); /* overlay */
+  z-index: 1;
+}
+
+.bgin > * {
+  position: relative;
+  z-index: 3; /* المحتوى فوق كل شيء */
+}
+
+.bb50{
+  position: absolute;
+  top: 190px    !important;
+  margin: 0 auto;
+  left: 40%;
+  align-items: center;
+}
+
+.bgine {
+  position: relative;
+  background-image: url("/activity.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 75vh;
+  overflow: hidden;
+z-index: -1;
+}
+.bgine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.367); /* overlay */
+  z-index: 1;
+}
+
+.bgine > * {
+  position: relative;
+  z-index: 3; /* المحتوى فوق كل شيء */
+}
+
+.max-w-50{
+  max-width: 50%;
+  justify-content: start;
+  place-content:center ;
+}
+.wd-10{ 
+width:fit-content !important ;
+
+}
+.bgcb{
+  background-color: #fa4d00 ;
+}
+.max-w-40{
+  width: 100%;
+  justify-content: start;
+  place-content:center ;
+}
+
+.centage{
+  right:  40%;
+}
+.w-1000l{
+  width: 100% !important;
+}
+.f100f{
+  width: 100%;
+}
+.justfyCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  flex-direction: column;
+}
+.w-1000g{
+color: aliceblue;  font-size: 50px !important;
+font-size: 75px;
+padding-top: -50px !important;
+}
+.shadwoImagePersonnage{
+
+  box-shadow: 0 25px 50px -12px rgb(235 82 3 / 97%);
+    --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #fe7403a6), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+ 
+    
+.width33{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+}
+
+.fontLarg{
+  font-size: 85px;
+}
+.fcol{
+  flex-direction: column !important;
+  text-align: center;
+  height: auto;
+}
+@media  (max-width:776px) {
+  .respoBox{
+width: 80% !important;
+height: auto !important;
+padding: 0 !important;
+margin: 0 auto;
+}
+.flexDir{
+  flex-direction: column !important;
+}
+.footerRespo{
+  text-align: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.footerRespoT{
+  text-align: center;
+  margin: 0 auto;
+}
+}
+.flexDirR{
+  flex-direction: column !important;
+  margin: 5px auto;
+}
+.mcentr{
+  text-align: center;
+  margin: 20px auto;
+}
+.textaurtre{
+  font-size: 22px;
+}
+.textaurtre1{
+  font-size: 20px;
+}
+.disBlock{
+  display: block;
+  margin: 0 auto;
+}
+.fontLargs{
+  font-size: 185px;
+  box-shadow:0 25px 50px -12px rgba(3, 200, 235, 0.249) ;
+}
+.bottom-right10{
+  bottom: 250px;
+  left: 0px;
+}
+.bottom-left10{
+  bottom: 250px;
+  right:  0px;  
+}
+.top-eft-10{
+  left: 150px;
+  top: 50px;
+}
+
+.width30{
+  width: 40%;
+  margin:  0 auto;
+}
+.width50{
+  width: 50%;
+  margin:  0 auto;
+
+}
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1 );
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+}
+
+
+@keyframes flyRight {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes flyLeft {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100vw) scale(1.5);
+    opacity: 0;
   }
 }

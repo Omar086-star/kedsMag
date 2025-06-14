@@ -364,6 +364,7 @@ export default function JoinPage() {
           </div>
         </div>
       </section>
+    
     </div>
   )
 }
