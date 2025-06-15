@@ -337,6 +337,9 @@ height: auto !important;
 padding: 0 !important;
 margin: 0 auto;
 }
+.fsrespo{
+  font-size: 18px !important;
+}
 .flexDir{
   flex-direction: column !important;
 }
@@ -360,6 +363,12 @@ margin: 0 auto;
 }
 .textaurtre{
   font-size: 22px;
+}
+.dispoblock{
+  display: block;
+  margin: 3px auto;
+  padding-inline: 5px;
+
 }
 .textaurtre1{
   font-size: 20px;

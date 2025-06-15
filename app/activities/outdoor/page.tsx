@@ -38,13 +38,18 @@ export default function OutdoorActivitiesPage() {
 
       {/* بطاقات صور لمحتوى خارجي ثابت */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+
+ 
+
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/outdoornature.jpeg" alt="رحلات طبيعية" fill className="object-cover rounded-t" />
+            <Image src="/natur5.png" alt="رحلات طبيعية" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">استكشاف الطبيعة</h3>
             <p className="text-gray-600 text-sm">رحلات إلى الحدائق والجبال لاكتشاف النباتات والحيوانات وتعزيز حب البيئة.</p>
+            <a href="/activities/outdoor/Nature-exploration"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
 
@@ -55,16 +60,20 @@ export default function OutdoorActivitiesPage() {
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">أنشطة رياضية</h3>
             <p className="text-gray-600 text-sm">ألعاب كرة القدم والعدو والمسابقات التي تعزز اللياقة والتعاون.</p>
+            <a href="/activities/outdoor/sport"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/outdoorgames.jpeg" alt="ألعاب ميدانية" fill className="object-cover rounded-t" />
+            <Image src="/jardinact2.png" alt="ألعاب ميدانية" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">ألعاب ميدانية</h3>
             <p className="text-gray-600 text-sm">أنشطة ترفيهية في الهواء الطلق تنمّي المهارات الحركية والإبداع الجماعي.</p>
+            <a href="/activities/outdoor/game"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
       </div>

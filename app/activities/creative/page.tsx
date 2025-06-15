@@ -40,7 +40,7 @@ export default function CreativeActivitiesPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/creative-drawing.jpeg" alt="رسم وتلوين" fill className="object-cover rounded-t" />
+            <Image src="/color1.png" alt="رسم وتلوين" fill className="object-cover rounded-t" />
           </div>
          
 
@@ -48,28 +48,32 @@ export default function CreativeActivitiesPage() {
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">ركن الرسم والتلوين</h3>
             <p className="text-gray-600 text-sm">أنشطة فنية تعزز الحس الجمالي وتتيح للطفل التعبير عن أفكاره بالألوان.</p>
-            <a href="/coloring-activities"> <span className="text-gray-900"> تعلم المزيد</span>    </a> 
+            <a href="/activities/creative/coloring-activities"> <span className="text-gray-900"> تعلم المزيد</span>    </a> 
           </CardContent>
          
         </Card>
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/creative-theater.jpeg" alt="مسرح الأطفال" fill className="object-cover rounded-t" />
+            <Image src="/meusem4.png" alt="مسرح الأطفال" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">مسرح الطفل</h3>
             <p className="text-gray-600 text-sm">تمثيليات وأداءات مسرحية تطور الجرأة والثقة بالنفس وروح التعاون.</p>
+            <a href="/activities/creative/meusem"> <span className="text-gray-900"> تعلم المزيد</span>    </a> 
+
           </CardContent>
         </Card>
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/creative-crafts.jpeg" alt="أشغال يدوية" fill className="object-cover rounded-t" />
+            <Image src="/form1.png" alt="أشغال يدوية" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">الأشغال اليدوية</h3>
             <p className="text-gray-600 text-sm">أنشطة قص ولصق وصنع مجسمات تنمي المهارات الحركية الدقيقة والإبداع العملي.</p>
+            <a href="/activities/creative/traditional"> <span className="text-gray-900"> تعلم المزيد</span>    </a> 
+
           </CardContent>
         </Card>
       </div>

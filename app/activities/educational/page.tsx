@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { BookOpen } from "lucide-react"
 import FloatingBox from '@/components/FloatingBox';
-
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 export default function EducationalActivitiesPage() {
@@ -28,7 +27,7 @@ export default function EducationalActivitiesPage() {
     <div className=" px-6">
       <Header />
 
-      <h1 className="text-3xl font-bold violetCustom mb-8 text-center">أنشطة تربوية</h1>
+      <h1 className="  font-bold violetCustom mt-8 text-center text-4xl   text-[#3a00cc] mb-4">أنشطة تربوية</h1>
 
       {/* محتوى تربوي للأطفال */}
       <div className="mb-16 max-w-3xl mx-auto text-center">
@@ -46,16 +45,20 @@ export default function EducationalActivitiesPage() {
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">ألعاب تعليمية</h3>
             <p className="text-gray-600 text-sm">نشاطات جماعية تحفز التفكير والتحليل بطريقة ممتعة وتعاونية.</p>
+            <a href="/activities/educational/gameD"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/opi2.jpeg" alt="قِيَم وتعاون" fill className="object-cover rounded-t" />
+            <Image src="/cover1.png" alt="قِيَم وتعاون" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">حلقة القيم</h3>
             <p className="text-gray-600 text-sm">نقاشات تربوية حول الصدق، التعاون، والاحترام ضمن مجموعات صغيرة.</p>
+            <a href="/activities/educational/valeu"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
 
@@ -66,6 +69,8 @@ export default function EducationalActivitiesPage() {
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">قصص منطقية</h3>
             <p className="text-gray-600 text-sm">أنشطة قراءة قصص قصيرة تحفز على التفكير المنطقي واستخلاص العِبر.</p>
+            <a href="/activities/educational/logic"> <span className="text-blue-600 text-sm"> تعلم المزيد</span></a>
+
           </CardContent>
         </Card>
       </div>

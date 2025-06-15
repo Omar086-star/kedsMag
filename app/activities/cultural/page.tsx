@@ -40,7 +40,7 @@ export default function CulturalActivitiesPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/culture-books.png" alt="كتب للأطفال" fill className="object-cover rounded-t" />
+            <Image src="/pip (1).png" alt="كتب للأطفال" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">مكتبة الطفل</h3>
@@ -52,7 +52,7 @@ export default function CulturalActivitiesPage() {
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/heritage-craft.png" alt="فن تراثي" fill className="object-cover rounded-t" />
+            <Image src="/cc.png" alt="فن تراثي" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">ورشة فنون تقليدية</h3>
@@ -64,7 +64,7 @@ export default function CulturalActivitiesPage() {
 
         <Card className="bg-white border-2 border-purple-200">
           <div className="relative h-56">
-            <Image src="/story-circle.png" alt="حكايات شعبية" fill className="object-cover rounded-t" />
+            <Image src="/trqd (1).png" alt="حكايات شعبية" fill className="object-cover rounded-t" />
           </div>
           <CardContent className="p-4">
             <h3 className="text-xl font-semibold violetCustom mb-2">حلقة الحكايا</h3>

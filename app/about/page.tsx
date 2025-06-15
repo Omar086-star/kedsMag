@@ -12,27 +12,27 @@ import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 export default function AboutPage() {
   const team = [
-    { name: "أ. عمر الملا",      role: "الـــمشـــــــرف العام", description: "باحث في الحـــــضارت  العلــوم والإنسانية", image: "/omarmu.png" },
+    { name: "أ. عمر الملا",      role: "الـــمشـــــــرف العام", description: " ⭐         ", image: "/omarmu.png" },
 
-    { name: "أ. ولاء درويش",     role: "رئيــــســـــة التحرير", description: "متـــــــــخصصة في أدب الأطفــال والتربية", image: "/walaa.png" },
+    { name: "أ. ولاء درويش",     role: "رئيــــســـــة التحرير", description: "⭐        ", image: "/walaa.png" },
 
-    { name: "أ. محمد الأحمد",    role: "مديـر فريق الــتصــميم", description: "خبير في الأنشــــطــة التعليمية التفاعلية", image: "/mohammad.png" },
-    { name: "د. عمر الشحادة",   role: "مدير فريق الدعم النفسي", description: "مستـــشـــار    ومـــحاضـر في عدة جامعات", image: "/omarsh.png" },
-    { name: "أ. آية الفندي",    role: "مسؤولة الـعلاقات العامة", description: "خبـــــــــيرة علاقات عامة وتـــسويق رقمي", image: "/aya.png" },
-    { name: "أ. زهراء عقيل",    role: "مسؤولة الـتدقيق اللغوي", description: "مسؤولة الموارد الـــبشرية وطلبات الاكتتاب", image: "/zahraa.png" },
-    { name: "أ. يتول هنداوي",   role: "مسؤولة التـسويق الرقمي", description: "خبـــــــــيرة علاقات عامة وتسويـــق رقمي", image: "/batoul.png" },
-    { name: "أ. أنسام داوود",   role: "مسؤولة الموارد البشرية", description: "مسؤولة الموارد البشرية وطلبات الاكتـــتاب", image: "/ansam.png" },
-    { name: "أ. بشير مشعان",   role: "مسؤول المــكتب التقــني", description: "مـــسؤول عن الـــــجانــب الــرقـــمـــي", image: "/bashier.png" },
-    { name: "أ. ديالا مطر",      role: "فــريــق الـتحــريـــر", description: "خبيرة في صعوبــــــات الـتعلم لدى الأطفال", image: "/dyala.png" },
-    { name: "أ. هيفاء درويش",   role: "فــريــق الـتحــريـــر", description: "ميسرة جلسـات الدعـــــم النفـــسي للأطفال", image: "/haifa.png" },
-    { name: "أ. إيمان عيسى",    role: "فــريــق الـتحــريـــر", description: "كـــــاتـــــبـــــة ومـــــــــحـــررة ", image: "/eman.png" },
+    { name: "أ. محمد الأحمد",    role: "مديـر فريق الــتصــميم", description: "        ⭐", image: "/mohammad.png" },
+    { name: "د. عمر الشحادة",   role: "مدير فريق الدعم النفسي", description: "⭐           ", image: "/omarsh.png" },
+    { name: "أ. آية الفندي",    role: "مسؤولة الـعلاقات العامة", description: "⭐        ", image: "/aya.png" },
+    { name: "أ. زهراء عقيل",    role: "مسؤولة الـتدقيق اللغوي", description: "⭐        ", image: "/zahraa.png" },
+    { name: "أ. يتول هنداوي",   role: "مسؤولة التـسويق الرقمي", description: "⭐        ", image: "/batoul.png" },
+    { name: "أ. أنسام داوود",   role: "مسؤولة الموارد البشرية", description: "    ⭐     ", image: "/ansam.png" },
+    { name: "أ. بشير مشعان",   role: "مسؤول المــكتب التقــني", description: "  ⭐    ", image: "/bashier.png" },
+    { name: "أ. ديالا مطر",      role: "فــريــق الـتحــريـــر", description: "⭐          ", image: "/dyala.png" },
+    { name: "أ. هيفاء درويش",   role: "فــريــق الـتحــريـــر", description: "⭐        ", image: "/haifa.png" },
+    { name: "أ. إيمان عيسى",    role: "فــريــق الـتحــريـــر", description: "⭐   ", image: "/eman.png" },
 
-    { name: "أ. ضحى الحماد",    role: "فريق الدعــم النـــفسي", description: "خبيرة في صعوبات التعـــلم لــــدى الأطفال", image: "/doha.png" },
-    { name: "أ. فيروز الفرحان", role: "فريق الدعــم النـــفسي", description: "ميسرة جلسات الدعم النفســـــــــي للأطفال", image: "/fayrouz.png" },
-    { name: "أ. زينة الجبر",    role: "فريق الدعــم النـــفسي", description: "مــرشــدة نــــفســـــية وتـــربـــويــة", image: "/zina.png" },
-    { name: "أ. إيناس سويد",    role: "فــــريــق الــتصــميم", description: "خبير في الأنشــطة التعــــليمية التفاعلية", image: "/inas.png" },
-    { name: "أ. نور اللحام",    role: "فــــريــق الــتصــميم", description: "مستشار في علم النفس ومحاضر في عدة جامعات", image: "/nour.png" },
-    { name: "أ. فاطمة نصار",    role: "فــــريــق الــتصــميم", description: "خبـــــــــيرة علاقات عـــامة وتسويق رقمي", image: "/fatima.png" },
+    { name: "أ. ضحى الحماد",    role: "فريق الدعــم النـــفسي", description: "  ⭐        ", image: "/doha.png" },
+    { name: "أ. فيروز الفرحان", role: "فريق الدعــم النـــفسي", description: "⭐        ", image: "/fayrouz.png" },
+    { name: "أ. زينة الجبر",    role: "فريق الدعــم النـــفسي", description: "⭐    ", image: "/zina.png" },
+    { name: "أ. إيناس سويد",    role: "فــــريــق الــتصــميم", description: "  ⭐      ", image: "/inas.png" },
+    { name: "أ. نور اللحام",    role: "فــــريــق الــتصــميم", description: "          ⭐    ", image: "/nour.png" },
+    { name: "أ. فاطمة نصار",    role: "فــــريــق الــتصــميم", description: "⭐        ", image: "/fatima.png" },
   ]
   const sections = [
     team.slice(0, 1),
@@ -67,7 +67,7 @@ export default function AboutPage() {
 <div className="bgin max-w-screen ">
   <Bubbles />
   <h2 className="  text-center  w-1000g mbot font-bold ">فريق العمل</h2>
-  <p className="text-center text-white  mbot ttrs">فريق متخصص ومتفان لخدمة أطفالنا</p>
+  <p className="text-center text-white fsrespo mbot ttrs">فريق متخصص ومتفان لخدمة أطفالنا</p>
 
   <div className="relative z-30 text-white flex flex-col justify-center items-center h-screen">
   
