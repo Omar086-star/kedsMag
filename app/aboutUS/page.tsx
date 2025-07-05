@@ -62,6 +62,9 @@ import Header from "@/components/Header"
          </div>
        </section>
  
+
+
+
        {/* Mission & Vision */}
        <section className="py-16 bg-white">
          <div className="container mx-auto px-4">
@@ -77,6 +80,7 @@ import Header from "@/components/Header"
                  className="w-full max-w-md mx-auto rounded-3xl shadow-2xl"
                />
              </div>
+             
              <div>
                <h2 className="text-4xl font-bold text-purple-800 mb-6">رسالتنا</h2>
                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
@@ -118,6 +122,9 @@ import Header from "@/components/Header"
              <p className="text-xl text-gray-600">القيم التي نؤمن بها ونسعى لتعزيزها في أطفالنا</p>
            </div>
  
+
+
+
            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
              <Card className="border-4 border-purple-200 hover:border-purple-400 transition-all transform hover:scale-105 bg-white">
                <CardContent className="p-6 text-center">
@@ -180,7 +187,6 @@ import Header from "@/components/Header"
              </Card>
            </div>
          </div>
-
          <div>
             <h1 className="text-5xl font-bold text-purple-800  mcentr">
 الترخيص
@@ -196,50 +202,7 @@ import Header from "@/components/Header"
          </div>
        </section>
  
-       {/* Team Section */}
-       {/* <section className="py-16 bg-white">
-         <div className="container mx-auto px-4">
-           <div className="text-center mb-12">
-             <h2 className="text-4xl font-bold text-purple-800 mb-4">فريق العمل</h2>
-           </div>
- 
-           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-             {[
-               {
-                 name: "أ. سارة أحمد",
-                 role: "رئيسة التحرير",
-                 description: "متخصصة في أدب الأطفال والتربية",
-               },
-               {
-                 name: "أ. محمد علي",
-                 role: "مدير الأنشطة",
-                 description: "خبير في الأنشطة التعليمية التفاعلية",
-               },
-               {
-                 name: "أ. فاطمة حسن",
-                 role: "مصممة جرافيك",
-                 description: "متخصصة في التصميم للأطفال",
-               },
-             ].map((member, index) => (
-               <Card
-                 key={index}
-                 className="border-4 border-purple-200 hover:border-purple-400 transition-all transform hover:scale-105 bg-white"
-               >
-                 <CardContent className="p-6 text-center">
-                   <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
-                     {member.name.charAt(2)}
-                   </div>
-                   <h3 className="text-xl font-bold text-purple-800 mb-1">{member.name}</h3>
-                   <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-                   <p className="text-gray-600 text-sm">{member.description}</p>
-                 </CardContent>
-               </Card>
-             ))}
-           </div>
-         </div>
-       </section> */}
- 
-       {/* Statistics */}
+      
        <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
          <div className="container mx-auto px-4">
            <div className="text-center mb-12">

@@ -412,7 +412,7 @@ export default function HomePage() {
 <section className="relative overflow-hidden py-16">
   {/* الخلفية المتدرجة والفُقاعات */}
   <div className="absolute inset-0 bgi z-0">
-    <div className="absolute inset-0 bg-black/40 z-10" />
+    
   </div>
 
   <div className="container mx-auto px-4 relative z-20">
@@ -438,13 +438,15 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
+         <a href="/ourPromo"> 
           <Button
             size="lg"
             className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all"
           >
             <BookOpen className="w-5 h-5 mr-2" />
-            اقرأ العدد الجديد
+            سيرتنا البصرية بين يديك  
           </Button>
+</a>
           <a href="https://www.youtube.com/watch?v=9y_6tQJfoww" className="">
             <Button
               size="lg"
@@ -462,13 +464,8 @@ export default function HomePage() {
       <div className="relative w-full max-w-md mx-auto z-30">
         <MagazineSlider />
 
-        {/* صور متحركة على الغلاف */}
-        <div className="absolute top-10 left-10 w-10 h-40 animate-rotateBlob z-40">
-          <img src="/8-p.png" alt="blob" className="w-full h-full object-contain" />
-        </div>
-        <div className="absolute top-10 right-10 w-10 h-40 animate-rotateBlobs z-40">
-          <img src="/8-o.png" alt="blob" className="w-full h-full object-contain" />
-        </div>
+
+
       </div>
     </div>
   </div>
@@ -482,7 +479,7 @@ export default function HomePage() {
 <h2 className="text-4xl font-bold disBlock violetCustom mb-4">أحدث الإصدارات</h2>
 <p className="text-xl text-gray-600">اكتشف أحدث أعداد مجلتنا المليئة بالمتعة والتعلم</p>
 </div>
-<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 px-4">
+<div className="grid md:grid-cols-2 lg:grid-cols-4 itemsCent gap-2 px-4">
 {magazines.slice(0, 3).map((issue) => (
   <Card
     key={issue.id}
@@ -502,29 +499,30 @@ export default function HomePage() {
         </div>
       </div>
     </Link>
-    <CardContent className="p-6">
-      <h3 className="text-xl font-bold violetCustom mb-2">{issue.title}</h3>
-      <p className="text-gray-600 mb-4">{issue.date}</p>
-      <div className="flex gap-2">
-        <Button
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full"
-          onClick={() => window.open(issue.file_url, '_blank')}
-        >
-          <BookOpen className="w-4 h-4 mr-2" /> اقرأ الآن
-        </Button>
-        <a href={issue.file_url} download className="shrink-0">
-          <Button variant="outline" className="border-2 border-purple-500 text-purple-700 rounded-full">
-            <Download className="w-4 h-4" />
-          </Button>
-        </a>
-      </div>
-    </CardContent>
-  </Card>
-))}
+
+<CardContent className="p-6">
+<h3 className="text-xl font-bold violetCustom mb-2">{issue.title}</h3>
+<p className="text-gray-600 mb-4">{issue.date}</p>
+<div className="hwfullss gap-2">
+{/* <Button
+className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full"
+onClick={() => window.open(issue.file_url, '_blank')}
+>
+<BookOpen className="w-4 h-4 mr-2" /> اقرأ الآن
+</Button> */}
+<Link href={`/editions/${issue.id}`} className="hwfullss"><Button variant="ghost" className="hwfullss bg-purple-600 text-white">👁️ شاهد هذا العدد</Button></Link>
+
 </div>
+</CardContent>
+
+  </Card>
+  
+))}
 <Link href="/editions">
-  <Button className="mt-4 mx-auto bg-purple-600 text-white rounded-full px-6">عرض كل الأعداد</Button>
+  <Button className="mt-4 mx-auto bg-purple-600 text-white boxnexT px-6">عرض كل الأعداد</Button>
 </Link>
+</div>
+
 </section>
 
       {/* ACTIVITES Section */}
@@ -559,11 +557,30 @@ export default function HomePage() {
   <h3 className="text-xl font-bold text-green-800 mb-2">{activite.title}</h3>
   <p className="text-gray-600 mb-4">{activite.date}</p>
   <div className="flex gap-2">
-    <a href={activite.file_url} target="_blank" rel="noopener noreferrer" className="flex-1">
+
+
+    {/* <a href={activite.file_url} target="_blank" rel="noopener noreferrer" className="flex-1">
       <Button className="w-full bg-gradient-to-r from-green-600 to-blue-500 text-white rounded-full">
         <BookOpen className="w-4 h-4 mr-2" /> شاهد النشاط
       </Button>
-    </a>
+    </a> */}
+
+
+<a href={`/activities/${activite.id}`} className="flex-1">
+  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full">
+    <BookOpen className="w-4 h-4 mr-2" /> عرض النشاط
+  </Button>
+</a>
+
+
+
+
+
+    {/* <a href={activite.file_url} target="_blank" rel="noopener noreferrer" className="flex-1">
+      <Button className="w-full bg-gradient-to-r from-green-600 to-blue-500 text-white rounded-full">
+        <BookOpen className="w-4 h-4 mr-2" /> أقرأ النشاط
+      </Button> */}
+    {/* </a> */}
     <a href={activite.file_url} download>
       <Button variant="outline" className="border-2 border-green-500 text-green-700 rounded-full">
         <Download className="w-4 h-4" />

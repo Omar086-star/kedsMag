@@ -8,12 +8,13 @@ import Bubbles from "@/components/Bubbles";
 import { Camera, Download, Play } from "lucide-react"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
+import FloatingBox from '@/components/FloatingBox';
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { supabase } from "@/lib/supabase"
-import FloatingBox from '@/components/FloatingBox';
 
 export default function ActivitiesPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -111,11 +112,11 @@ export default function ActivitiesPage() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <a href={activite.file_url} target="_blank" className="flex-1">
-                      <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full">
-                        <BookOpen className="w-4 h-4 mr-2" /> عرض النشاط
-                      </Button>
-                    </a>
+<a href={`/activities/${activite.id}`} className="flex-1">
+  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full">
+    <BookOpen className="w-4 h-4 mr-2" /> عرض النشاط
+  </Button>
+</a>
                     <a href={activite.file_url} download>
                       <Button variant="outline" className="border-2 border-purple-500 text-purple-700 rounded-full">
                         <Heart className="w-4 h-4" />
@@ -143,6 +144,8 @@ export default function ActivitiesPage() {
             <div className="space-y-6">
               {futureEvents.map((event, index) => (
                 <Card key={event.id} className="border-4 border-purple-200 hover:border-purple-400 transition-all bg-gradient-to-r from-purple-50 to-blue-50">
+                
+                
                   <CardContent className="p-6">
                     <div className="flex flex-col md:flex-row gap-6 items-center">
                       <div className="relative w-32 h-32 flex-shrink-0">
@@ -165,13 +168,23 @@ export default function ActivitiesPage() {
                           </div>
                         </div>
                         <a href={event.file_url} target="_blank">
-                          <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-2 font-bold">
-                            احجز مكانك
-                          </Button>
+{/* 
+  <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-2 font-bold">
+     أقرأ الآن
+  </Button> */}
+
                         </a>
+<a href={`/booking/${event.id}`}>
+  <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-2 font-bold">
+    احجز مكانك
+  </Button>
+</a>
+
                       </div>
                     </div>
                   </CardContent>
+
+
                 </Card>
               ))}
             </div>
@@ -182,11 +195,23 @@ export default function ActivitiesPage() {
 
 
       {/* activite انواع النشاطات Types */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 violetCustom">
+
+            <section
+        className="bg-fixed bg-center bg-cover text-white"
+        style={{
+          backgroundImage: "url('/pont.jpg')", // ضع هنا مسار صورة المصافحة
+          minHeight: "70vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+       <section className="py-16 bg-black coverS bg-opacity-50 violetCustom">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold violetCustom mb-4">أنواع الأنشطة</h2>
-            <p className="text-xl text-gray-600">تنوع في الأنشطة يناسب جميع الاهتمامات</p>
+            <p className="text-xl text-gray-100">تنوع في الأنشطة يناسب جميع الاهتمامات</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -207,6 +232,8 @@ export default function ActivitiesPage() {
               </CardContent>
               </a>
             </Card>
+
+
 
             <Card className="border-4 boxi border-orange-200 hover:border-orange-400  transition-all transform hover:scale-105 bg-bx-force">
             <a href="/activities/educational">  
@@ -243,9 +270,31 @@ export default function ActivitiesPage() {
               </CardContent>
               </a>
             </Card>
+
+
+
+
+
+
           </div>
+                <Card className="border-4 boxi border-orange-200 my-10 hover:border-orange-400  transition-all transform hover:scale-105 bg-bx-force">
+            <a href="/activities/distreption">  
+              <CardContent className="p-6 text-center">
+                <div className="w-16 h-16 bgbr violetCustom0 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8 text-white hover:border-orange-400 transition-all transform hover:scale-150" />
+                </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">فعاليات التوزيع  </h3>
+                <p className="text-white">    نصور نشاطاتنا و وصلنا لأطفالكم بكل حب   </p>
+              </CardContent>
+              </a>
+            </Card>
+
+
         </div>
       </section>
+      </section>
+  
 
 
       {/* Registration انضم الى نشاطاتنا CTA */}
@@ -290,9 +339,8 @@ export default function ActivitiesPage() {
           </div>
         </div>
       </section>
-      <FloatingBox />
 
-      {/* Footer */}
+<FloatingBox />
  
 <Footer />
 

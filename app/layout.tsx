@@ -12,10 +12,10 @@ const cairo = Cairo({
 
 // بيانات الـ metadata للموقع
 export const metadata: Metadata = {
-  title: "Coach Digital - Développement Personnel & Numérique",
+  title: "   مجلة 8 كانون للأطفال   ",
   description:
-    "Coach spécialisé en développement personnel, numérique et accompagnement administratif. Formations, coaching et création d'associations.",
-  generator: "v0.dev",
+    "                 مجلة تعليمية ترفيهية مخصصة للأطفال، تحتوي على قصص مشوقة، أنشطة تفاعلية، ومحتوى تعليمي يساعد الأطفال على التعلم والنمو بطريقة ممتعة",
+  generator: "mulla-web.dev",
 }
 
 // مكون التخطيط الرئيسي

@@ -20,16 +20,16 @@ export default function AboutPage() {
     { name: "د. عمر الشحادة",   role: "مدير فريق الدعم النفسي", description: "⭐           ", image: "/omarsh.png" },
     { name: "أ. آية الفندي",    role: "مسؤولة الـعلاقات العامة", description: "⭐        ", image: "/aya.png" },
     { name: "أ. زهراء عقيل",    role: "مسؤولة الـتدقيق اللغوي", description: "⭐        ", image: "/zahraa.png" },
-    { name: "أ. يتول هنداوي",   role: "مسؤولة التـسويق الرقمي", description: "⭐        ", image: "/batoul.png" },
+    { name: "أ. بتول هنداوي",   role: "مسؤولة التـسويق الرقمي", description: "⭐        ", image: "/batoul.png" },
     { name: "أ. أنسام داوود",   role: "مسؤولة الموارد البشرية", description: "    ⭐     ", image: "/ansam.png" },
     { name: "أ. بشير مشعان",   role: "مسؤول المــكتب التقــني", description: "  ⭐    ", image: "/bashier.png" },
     { name: "أ. ديالا مطر",      role: "فــريــق الـتحــريـــر", description: "⭐          ", image: "/dyala.png" },
     { name: "أ. هيفاء درويش",   role: "فــريــق الـتحــريـــر", description: "⭐        ", image: "/haifa.png" },
-    { name: "أ. إيمان عيسى",    role: "فــريــق الـتحــريـــر", description: "⭐   ", image: "/eman.png" },
+    { name: "أ. إيمان الموسى ",    role: "فــريــق الـتحــريـــر", description: "⭐   ", image: "/eman.png" },
 
     { name: "أ. ضحى الحماد",    role: "فريق الدعــم النـــفسي", description: "  ⭐        ", image: "/doha.png" },
     { name: "أ. فيروز الفرحان", role: "فريق الدعــم النـــفسي", description: "⭐        ", image: "/fayrouz.png" },
-    { name: "أ. زينة الجبر",    role: "فريق الدعــم النـــفسي", description: "⭐    ", image: "/zina.png" },
+    { name: "أ. زينة الرجب",    role: "فريق الدعــم النـــفسي", description: "⭐    ", image: "/zina.png" },
     { name: "أ. إيناس سويد",    role: "فــــريــق الــتصــميم", description: "  ⭐      ", image: "/inas.png" },
     { name: "أ. نور اللحام",    role: "فــــريــق الــتصــميم", description: "          ⭐    ", image: "/nour.png" },
     { name: "أ. فاطمة نصار",    role: "فــــريــق الــتصــميم", description: "⭐        ", image: "/fatima.png" },
@@ -45,11 +45,7 @@ export default function AboutPage() {
     team.slice(15, 19),
 
 
-    // team.slice(1, 4),
-    // team.slice(4, 9),
 
-    // team.slice(9, 12),
-    // team.slice( 12, 18),
 
   ]
   return (
@@ -69,16 +65,7 @@ export default function AboutPage() {
   <h2 className="  text-center  w-1000g mbot font-bold ">فريق العمل</h2>
   <p className="text-center text-white fsrespo mbot ttrs">فريق متخصص ومتفان لخدمة أطفالنا</p>
 
-  <div className="relative z-30 text-white flex flex-col justify-center items-center h-screen">
-  
-    <div className="absolute top-10 left-10 w-10 h-40 animate-rotateBlob">
-    <img src="/8-p.png" alt="blob" className="w-full h-full object-contain" />
-  </div> 
-    <div className="absolute top-10 right-100 w-10 h-40 animate-rotateBlobs">
-    <img src="/8-o.png" alt="blob" className="w-full h-full object-contain" />
-  </div> 
 
-  </div>
 </div>
 
     </div>
@@ -90,7 +77,7 @@ export default function AboutPage() {
 
             {section.map((member, index) => (
               <Card key={index} className=" bg-none-force flex flex-col items-center gap-4  w-[280px]  p-6 rounded-lg    ">
-                <Image src={member.image} alt={member.name} width={160} height={200} className="w-full h-50 object-containt hover:animate-sway rounded-md" />
+                <Image src={member.image} alt={member.name} width={160} height={200} className="w-full h-50 object-containt coverPersonalite hover:animate-sway rounded-md" />
                 <CardContent className="text-center space-y-1">
                   <h3 className="text-lg text-fs-force font-bold  text-force">{member.name}</h3>
                   <p className=" c-bx-force font-medium">{member.role}</p>

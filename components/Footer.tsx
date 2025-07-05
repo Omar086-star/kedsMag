@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from "next/image"
+import DonateButton from '@/components/DonateButton';
 
 import Link from "next/link"
 
@@ -8,113 +9,82 @@ import Link from "next/link"
 export default function Footer() {
   return (
     <div>
-            <footer           className="bg-bx-force  text-white py-12 ">
-<div className="container footerRespo mx-auto px-4">
-  <div className="grid md:grid-cols-4 gap-8">
-  <Link href="/" className="flex items-center justfyLogo gap-3 gap-8">
-    <Image src="/logo.png" alt="شعار المجلة" width={170} height={135} className="object-contain" />
-  <p className="text-sm text-orange-400 "> ⭐⭐⭐⭐⭐</p>
-    <p className="text-white text-fs-force">
-                مجلة تعليمية وترفيهية مخصصة للأطفال
-                <br/>
-                 تهدف  
-                إلى تنمية مهاراتهم وقدراتهم بطريقة ممتعة
-              </p>
-    </Link>
-   
+<footer className="bg-[#2a00b8] text-white dirrr py-12 text-sm">
+  <div className="container mx-auto px-4 grid md:grid-cols-6 gap-8  items-centre">
 
     <div>
-      <h4 className="  font-bold mb-4 textaurtre">روابط سريعة</h4>
+
+      <h4 className="font-bold text-l fitCon mb-3">تبرع لنا  </h4>
+<DonateButton/>
+    </div>
+
+
+    {/* شركاؤنا */}
+    <div className="text-center">
+      <h4 className="font-bold text-l mb-3">شركائنا</h4>
+      <a href="https://salam-ngo.org/">
+        <Image src="/logosalam.png" alt="Salam Logo" width={60} height={60} className="mx-auto rounded-full bg-white p-1" />
+      </a>
+    </div>
+
+
+
+    {/* تواصل معنا */}
+    <div>
+      <h4 className="font-bold text-l mb-3">تواصل معنا</h4>
+      <div className="flex gap-2 mb-2">
+        <a href="https://facebook.com"><Image src="/facebook.svg" alt="facebook" width={24} height={24} /></a>
+        <a href="https://instagram.com"><Image src="/instagram.svg" alt="instagram" width={24} height={24} /></a>
+        <a href="https://youtube.com"><Image src="/youtube.svg" alt="youtube" width={24} height={24} /></a>
+        <a href="https://linkedin.com"><Image src="/linkedin.svg" alt="linkedin" width={24} height={24} /></a>
+      </div>
+      <p className="text-s">office@8kanoon.org</p>
+      <p className="text-s">+33759889586</p>
+      <p className="text-s">سوريا - دمشق</p>
+    </div>
+
+
+    {/* معلومات عنا */}
+    <div>
+      <h4 className="font-bold text-l mb-3">معلومات عنا</h4>
       <ul className="space-y-2">
-        <li>
-          <Link href="/about" className=" textaurtre1 text-white hover:text-white transition-colors">
-          فريق العمل
-                    </Link>
-        </li>
-        <li>
-          <Link href="/aboutUS" className=" textaurtre1 text-white hover:text-white transition-colors">
-            عن المجلة
-          </Link>
-        </li>
-        <li>
-          <Link href="/editions" className=" textaurtre1 text-white hover:text-white transition-colors">
-            إصداراتنا
-          </Link>
-        </li>
-        <li>
-          <Link href="/activities" className=" textaurtre1 text-white hover:text-white transition-colors">
-            الأنشطة
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact" className=" textaurtre1 text-white hover:text-white transition-colors">
-            اتصل بنا
-          </Link>
-        </li>
+        <li><Link href="/aboutUS">عن المجلة</Link></li>
+        <li><Link href="/contact">اتصل بنا</Link></li>
       </ul>
     </div>
 
+
+
+    {/* روابط سريعة */}
     <div>
-      <h4 className="   font-bold text-center mb-4 textaurtre">تابعنا</h4>
-      <div className="flex gap-4 footerRespoT">
-        <a
-          href="https://www.facebook.com/share/15pKYa6LXf/"
-          className=" text-fs-force w-15 h-15  flex items-center footerRespoT justify-center hover:bg-blue-700 transition-colors"
-        >
-              <Image src={"/facebook.svg"} width={50} height={50} alt={'facebook'}  className="object-cover" />
-
-        </a>
-        <a
-          href="https://www.instagram.com/8kanoon.maga"
-          className=" text-fs-force w-15 h-15  flex items-center footerRespoT justify-center hover:bg-pink-700 transition-colors"
-        >
-                      <Image src={"/instagram.svg"} width={50} height={50} alt={'instagram'}  className="object-cover " />
-
-        </a>
-        <a
-          href="https://www.youtube.com/@8kanoon-maga"
-          className=" text-fs-force w-15 h-15  flex items-center footerRespoT justify-center hover:bg-rose-500 transition-colors"
-        >
-              <Image src={"/youtube.svg"} width={50} height={50} alt={'youtube'}  className="object-cover" />
-              </a>
-              <a
-          href="https://www.linkedin.com/company/8kanoon-maga"
-          className=" text-fs-force w-15 h-15  flex items-center footerRespoT justify-center hover:bg-blue-500 transition-colors"
-        >
-              <Image src={"/linkedin.svg"} width={50} height={50} alt={'linkedin'}  className="object-cover" />
-              </a>
-      </div>
-
-      <div className='flexDirR text-center mb-4 textaurtre'>
-      <h4 className="   font-bold text-center mb-4 textaurtre">شركائنا</h4>
-
-      <a
-          href="https://salam-ngo.org/"
-          className=" text-fs-force w-20 h-15   flex items-center footerRespoT flexDirR justify-center bg-orange-400 rounded-full hover:bg-orange-200 transition-colors"
-        >
-
-              <Image src={"/logosalam.png"} width={80} height={80} alt={'salam'}  className="object-cover" />
-
-        </a>
-
-      </div>
+      <h4 className="font-bold text-l mb-3">روابط سريعة</h4>
+      <ul className="space-y-2">
+        <li><Link href="/about">فريق العمل</Link></li>
+        <li><Link href="/aboutUS">عن المجلة</Link></li>
+        <li><Link href="/projects">مشاريعنا</Link></li>
+        <li><Link href="/editions">إصدارات المجلة</Link></li>
+        <li><Link href="/activities">نشاطاتنا</Link></li>
+      </ul>
     </div>
 
-    <div>
-      <h4 className=" font-bold mb-4 textaurtre ">اتصل بنا</h4>
-      <div className="textaurtre1 space-y-2 text-white">
-        <p className="textaurtre1 ">office@8kanoon.org</p>
-        <p className="textaurtre1 ">+33759889586</p>
-        <p className="textaurtre1 ">سوريا - دمشق</p>
-      </div>
+
+    {/* الشعار والوصف */}
+
+    <div className="col-span-1 text-right space-y-2">
+      <Image src="/logo.png" alt="شعار المجلة" width={130} height={100} className="mx-auto" />
+      <p className="text-white text-center text-sm leading-snug">
+        مجلة تعليمية وترفيهية مخصصة للأطفال<br />
+        تهدف إلى تنمية مهاراتهم وقدراتهم بطريقة ممتعة
+      </p>
     </div>
+
   </div>
 
-  <div className="border-t text-white mt-8 pt-8 text-center text-white">
-    <p >&copy; 2025 مجلة 8 كانون للأطفال. جميع الحقوق محفوظة.</p>
+  <div className="text-center text-white border-t border-white mt-10 pt-6 text-s">
+    &copy; 2025 مجلة 8 كانون للأطفال. جميع الحقوق محفوظة.
   </div>
-</div>
 </footer>
+
     </div>
   )
 }

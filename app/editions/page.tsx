@@ -12,7 +12,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import FloatingBox from "@/components/FloatingBox"
 import Bubbles from "@/components/Bubbles"
-import DownloadTotalBox from "@/components/DownloadTotalBox"
+// import DownloadTotalBox from "@/components/DownloadTotalBox"
 
 export default function EditionsPage() {
   const [magazines, setMagazines] = useState<any[]>([])
@@ -76,42 +76,47 @@ export default function EditionsPage() {
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
       <Header />
       <Bubbles />
-      <DownloadTotalBox />
+      {/* <DownloadTotalBox /> */}
+
+
+
+
 
       {/* القسم الأول: الإصدار المميز */}
       <div className="text-center my-12">
         <h2 className="text-3xl font-bold text-purple-700 mb-4">الإصدار المميز</h2>
+                             <h3 className="text-3xl py-20 w-full font-bold mb-2">{latest.title}</h3>
+
         <Card className="mx-auto respoBox max-w-md border-4 border-purple-300 hover:shadow-2xl">
           <Image src={latest.cover_url || "/placeholder.svg"} alt={latest.title} width={400} height={500} className="object-cover w-full" />
           <CardContent className="p-4">
-            <h3 className="text-xl font-bold mb-2">{latest.title}</h3>
             <p className="text-gray-600 mb-4">{latest.date}</p>
-            <div className="flex gap-2 flexDir">
-              <Button onClick={() => window.open(latest.file_url, '_blank')} className="flex-1 bg-purple-600 text-white">📖 اقرأ الآن</Button>
-              <Button onClick={() => handleDownloadAndClick(latest.file_url, latest.title, latest.id)} variant="outline" className="flex-1">⬇️ تحميل العدد</Button>
-              <Link href={`/editions/${latest.id}`}><Button variant="ghost" className="flex-1 w-full bg-purple-600 text-white">👁️ شاهد هذا العدد</Button></Link>
+            <div className="  hwfullss flexDir">
+              {/* <Button onClick={() => window.open(latest.file_url, '_blank')} className="flex-1 bg-purple-600 text-white">📖 اقرأ الآن</Button> */}
+              {/* <Button onClick={() => handleDownloadAndClick(latest.file_url, latest.title, latest.id)} variant="outline" className="flex-1">⬇️ تحميل العدد</Button> */}
+              <Link href={`/editions/${latest.id}`} className="hwfullss"><Button variant="ghost" className=" hwfullss bg-purple-600 text-white"> شاهد هذا العدد</Button></Link>
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* القسم الثاني: باقي الإصدارات */}
-      <div className="grid md:grid-cols-3  gap-6 px-6 pb-12">
-        {others.map((mag) => (
-          <Card key={mag.id} className="border-2 respoBox hover:shadow-xl">
-            <Image src={mag.cover_url || "/placeholder.svg"} alt={mag.title} width={400} height={300} className="object-cover w-full h-64" />
-            <CardContent className="p-4">
-              <h4 className="text-lg font-bold mb-2">{mag.title}</h4>
-              <p className="text-sm text-gray-500 mb-2">{mag.date}</p>
-              <div className="flex gap-2 flexDir">
-                <Button onClick={() => window.open(mag.file_url, '_blank')} className="flex-1 bg-purple-600 text-white">📖 اقرأ الآن</Button>
-                <Button onClick={() => handleDownloadAndClick(mag.file_url, mag.title, mag.id)} variant="outline" className="flex-1">⬇️ تحميل العدد</Button>
-                <Link href={`/editions/${mag.id}`}><Button variant="ghost" className="flex-1 w-full bg-purple-600 text-white">👁️ شاهد هذا العدد</Button></Link>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+<div className="grid md:grid-cols-3  gap-6 px-6 pb-12">
+{others.map((mag) => (
+<Card key={mag.id} className="border-2 respoBox hover:shadow-xl">
+<Image src={mag.cover_url || "/placeholder.svg"} alt={mag.title} width={400} height={300} className="object-cover w-full h-64" />
+<CardContent className="p-4">
+<h4 className="text-lg font-bold mb-2">{mag.title}</h4>
+<p className="text-sm text-gray-500 mb-2">{mag.date}</p>
+<div className="hwfullss flexDir">
+{/* <Button onClick={() => window.open(mag.file_url, '_blank')} className="flex-1 bg-purple-600 text-white">📖 اقرأ الآن</Button> */}
+{/* <Button onClick={() => handleDownloadAndClick(mag.file_url, mag.title, mag.id)} variant="outline" className="flex-1">⬇️ تحميل العدد</Button> */}
+<Link href={`/editions/${mag.id}`}><Button variant="ghost" className="flex-1 hwfullss hwfull bg-purple-600 text-white">👁️ شاهد هذا العدد</Button></Link>
+</div>
+</CardContent>
+</Card>
+))}
+</div>
 
       <FloatingBox />
       <Footer />

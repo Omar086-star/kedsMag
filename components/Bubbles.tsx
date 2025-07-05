@@ -18,12 +18,12 @@ export default function Bubbles() {
 
       const bubble = document.createElement(isImage ? "img" : "div");
 
-      const size = Math.random() * 20 + 10;
+      const size = Math.random() * 10 + 5;
       bubble.style.width = `${size}px`;
       bubble.style.height = `${size}px`;
       bubble.style.left = Math.random() * 100 + "vw";
       bubble.style.position = "absolute";
-      bubble.style.bottom = "-100px";
+      bubble.style.bottom = "-50px";
       bubble.style.animation = `rise ${Math.random() * 5 + 5}s ease-in infinite`;
       bubble.style.zIndex = "2";
 
@@ -35,8 +35,8 @@ export default function Bubbles() {
       } else {
         bubble.className = "bubble";
         bubble.style.background = Math.random() < 0.5
-          ? "rgba(254, 123, 1, 0.4)" // برتقالي
-          : "rgba(0, 123, 255, 0.4)"; // أزرق
+          ? "rgba(254, 123, 1, 0.08)" // برتقالي
+          : "rgba(0, 123, 255, 0.21)"; // أزرق
         bubble.style.borderRadius = "50%";
       }
 

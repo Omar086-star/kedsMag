@@ -32,6 +32,7 @@ const categories = [
 { id: "workshops", name: "ورش العمل" },
 { id: "competitions", name: "المسابقات" },
 { id: "events", name: "الفعاليات" },
+{ id: "frinds", name: "أصدقاء كانون" },
 { id: "characters", name: "الشخصيات" },
 
 ]
@@ -115,34 +116,52 @@ return (
 </div>
 
 
-
-<section className="py-16 bg-white">
+      <section
+        className="bg-fixed bg-center bg-cover text-white"
+        style={{
+          backgroundImage: "url('/pont.jpg')",  minHeight: "50vh", display: "flex",   alignItems: "center", justifyContent: "center",  textAlign: "center",
+        }}
+      >
+  <section className="py-16 bg-cover bg-black coverS bg-opacity-50">
 <div className="container mx-auto px-4">
 <div className="text-center mb-12">
-<h2 className="text-4xl font-bold violetCustom mb-4">  أرقام نسعى للحصول عليها</h2>
-<p className="text-xl text-gray-600">أرقام ستعكس نشاطنا وتفاعلنا</p>
+<h2 className="text-4xl py-20 font-bold violetCustom mb-4">  أرقام نسعى للحصول عليها</h2>
+<p className="text-xl text-gray-100">أرقام ستعكس نشاطنا وتفاعلنا</p>
 </div>
 
 <div className="grid md:grid-cols-4 gap-8">
 <div className="text-center">
 <div className="text-5xl font-bold text-purple-600 mb-2">500+</div>
-<div className="text-lg text-gray-600">صورة</div>
+<div className="text-lg text-gray-100">صورة</div>
 </div>
 <div className="text-center">
 <div className="text-5xl font-bold text-blue-600 mb-2">50+</div>
-<div className="text-lg text-gray-600">فعالية</div>
+<div className="text-lg text-gray-100">فعالية</div>
 </div>
 <div className="text-center">
 <div className="text-5xl font-bold text-green-600 mb-2">1000+</div>
-<div className="text-lg text-gray-600">طفل مشارك</div>
+<div className="text-lg text-gray-100">طفل مشارك</div>
 </div>
 <div className="text-center">
 <div className="text-5xl font-bold text-orange-600 mb-2">25+</div>
-<div className="text-lg text-gray-600">موقع</div>
+<div className="text-lg text-gray-100">موقع</div>
 </div>
 </div>
 </div>
 </section>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
 {/* CTA Section */}
 <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-500 text-white">
 <div className="container mx-auto px-4">

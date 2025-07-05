@@ -1,43 +1,42 @@
+// app/speditions/[id]/page.tsx
 "use client"
 
-import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
-import Image from "next/image"
-import { BookOpen, Download } from "lucide-react"
+import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
-import { Button } from "@/components/ui/button"
-import Bubbles from "@/components/Bubbles"
-import FloatingBox from "@/components/FloatingBox"
-import Footer from "@/components/Footer"
 import Header from "@/components/Header"
+import Footer from "@/components/Footer"
+import FloatingBox from "@/components/FloatingBox"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import { Download, BookOpen } from "lucide-react"
 
-export default function EditionDetailPage() {
+export default function SpecialEditionDetailPage() {
   const { id } = useParams()
   const [edition, setEdition] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function fetchEdition() {
+    const fetchEdition = async () => {
       const { data, error } = await supabase
-        .from("magazines")
+        .from("speditions")
         .select("*")
         .eq("id", id)
         .single()
 
       if (error || !data) {
-        setError("فشل في تحميل البيانات.")
+        setError("تعذر تحميل بيانات الإصدار.")
       } else {
         setEdition(data)
       }
     }
-
     fetchEdition()
   }, [id])
 
   const handleDownload = async () => {
     try {
       const { data, error: fetchError } = await supabase
-        .from("magazines")
+        .from("speditions")
         .select("downloads")
         .eq("id", edition.id)
         .single()
@@ -45,22 +44,18 @@ export default function EditionDetailPage() {
       if (fetchError || !data) throw new Error("فشل في جلب عدد التحميلات")
 
       await supabase
-        .from("magazines")
-        .update({ downloads: data.downloads + 1 })
+        .from("speditions")
+        .update({ downloads: (data.downloads || 0) + 1 })
         .eq("id", edition.id)
 
-      // ⚠️ تصحيح المسار النسبي بناءً على bucket = "uploads"
-      const relativePath = edition.file_url.split("/object/public/uploads/")[1]
-      if (!relativePath) throw new Error("فشل في استخراج مسار الملف")
+      const relativePath = edition.file_url?.split("/object/public/uploads/")[1]
+      if (!relativePath) throw new Error("مسار الملف غير صالح")
 
       const { data: signed, error: signErr } = await supabase.storage
         .from("uploads")
         .createSignedUrl(relativePath, 60)
 
-      if (signErr || !signed?.signedUrl) {
-        console.error("Signing error:", signErr)
-        throw new Error("فشل في توليد رابط التحميل الآمن")
-      }
+      if (signErr || !signed?.signedUrl) throw new Error("رابط التحميل غير متاح")
 
       const link = document.createElement("a")
       link.href = signed.signedUrl
@@ -69,51 +64,37 @@ export default function EditionDetailPage() {
       link.click()
       document.body.removeChild(link)
     } catch (err: any) {
-      alert(err.message || "حدث خطأ أثناء محاولة تحميل العدد")
+      alert(err.message || "حدث خطأ أثناء التحميل")
     }
   }
 
-  if (error) return <div className="text-center py-20 text-red-600 font-bold">{error}</div>
-  if (!edition) return <div className="text-center py-20 text-gray-500">جاري تحميل العدد...</div>
+  if (error) return <div className="text-center py-20 text-red-600">{error}</div>
+  if (!edition) return <div className="text-center py-20 text-gray-500">جاري تحميل الإصدار...</div>
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
-<Header />
-      <section
-        className="bg-fixed bg-center bg-cover text-white"
-        style={{
-          backgroundImage: "url('/pont.jpg')", // ضع هنا مسار صورة المصافحة
-          minHeight: "70vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        <div className="bg-black coverS bg-opacity-50 p-8 rounded-lg">
-        <h1 className="text-center fontLarg py-12 font-bold text-purple-100 mb-8">{edition.title}</h1>
+      <Header />
 
-         </div>
-      </section>
       <section className="px-6 py-12">
+        <h1 className="text-center text-3xl font-bold text-purple-800 mb-8">{edition.title}</h1>
 
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <div className="rounded-xl p-4 shadow bg-white">
             <Image
-              src={edition.cover_url || "/placeholder.svg"}
+              src={edition.cover_url || "/default-cover.png"}
               alt={edition.title}
               width={500}
               height={700}
               className="rounded object-cover mx-auto"
             />
-            <div className="flex gap-2 hwfullss mt-4 justify-center">
-              <a href={edition.file_url} className="hwfullss" target="_blank">
-                {/* <Button className="bg-[#fa4d00] text-white px-4">
+            <div className="flex gap-2 mt-4 justify-center">
+              <a href={edition.file_url} target="_blank">
+                <Button className="bg-[#fa4d00] text-white px-4">
                   <BookOpen className="w-4 h-4 ml-2" /> اقرأ الآن
-                </Button> */}
+                </Button>
               </a>
-              <Button onClick={handleDownload} className="bg-gradient-to-r from-purple-600 hwfullss to-blue-500 text-white px-4">
-                <Download className="w-4 h-4 ml-2 hwfullss" /> تحميل العدد
+              <Button onClick={handleDownload} className="bg-gradient-to-r from-purple-600 to-blue-500 text-white px-4">
+                <Download className="w-4 h-4 ml-2" /> تحميل العدد
               </Button>
             </div>
             <p className="text-sm text-gray-600 mt-2 text-center">
@@ -131,11 +112,11 @@ export default function EditionDetailPage() {
 
         {edition.video_url && (
           <div className="bg-white rounded-xl shadow p-4">
-            <h2 className="text-2xl font-semibold text-[#fa4d00] mb-4 text-center">🎥 فيديو تعريفي عن العدد</h2>
+            <h2 className="text-2xl font-semibold text-[#fa4d00] mb-4 text-center">🎥 فيديو تعريفي</h2>
             <div className="aspect-video w-full">
               <iframe
                 src={edition.video_url}
-                title="فيديو العدد"
+                title="فيديو الإصدار"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full border-0 rounded"
@@ -145,9 +126,8 @@ export default function EditionDetailPage() {
         )}
       </section>
 
-<Bubbles />
-<FloatingBox />
-<Footer />
+      <FloatingBox />
+      <Footer />
     </div>
   )
 }

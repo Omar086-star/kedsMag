@@ -23,13 +23,14 @@ export default function FloatingBox() {
             width={100}
             height={120}
             unoptimized
+            className='furatyImg'
           />
         </button>
       </div>
 
       {/* الرسالة المنبثقة */}
       {showPopup && (
-        <div className="fixed bottom-28 right-6 w-64 bg-white shadow-xl rounded-lg p-4 z-50 border border-purple-300">
+        <div className="fixed bottom-28 right-40 w-64 bg-white shadow-xl rounded-lg p-4 z-50 border border-purple-300">
           <h3 className="text-purple-700 font-bold mb-3 text-center">مرحباً بك يا صديقي ! 👋</h3>
           <p className="text-sm text-gray-700 text-center mb-4">
             كيف يمكنني مساعدتك اليوم؟
@@ -47,6 +48,24 @@ export default function FloatingBox() {
             >
               اقرأ آخر الإصدارات
             </button>
+            
+         
+
+            <button
+              onClick={() => router.push('/contact')}
+              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 text-sm"
+            >
+                تواصل معنا 
+            </button>
+            <button
+              onClick={() => router.push('/donate')}
+              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 text-sm"
+            >
+                 تبرع لنا 
+            </button>
+
+
+
           </div>
         </div>
       )}
