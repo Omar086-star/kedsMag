@@ -24,14 +24,14 @@ export default function Header() {
             </Link>
 
             {/* القائمة الكاملة على الشاشات المتوسطة فما فوق */}
-            <nav className="hidden md:flex items-center gap-6">
+            <nav className="hidden navbarrespons md:flex items-center gap-6">
               {navLinks()}
             </nav>
 
             <div className="flex items-center gap-3">
               {/* <LanguageSwitcher /> */}
               <a href="/activities#activitéAvenire">
-                <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-6 py-2 font-bold shadow-lg transform hover:scale-105 transition-all">
+                <Button className="bg-gradient-to-r butrespon  from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-6 py-2 font-bold shadow-lg transform hover:scale-105 transition-all">
                   انظر إلى فعالياتنا القادمة
                 </Button>
               </a>
@@ -46,7 +46,7 @@ export default function Header() {
       
         {/* القائمة المنسدلة على الموبايل */}
         {menuOpen && (
-          <nav className="md:hidden bg-[#3b00cc] text-white px-6 py-4 space-y-4 shadow-lg">
+          <nav className="md:hidden navbarrespons bg-[#3b00cc] text-white px-6 py-4 space-y-4 shadow-lg">
             {navLinks()}
           </nav>
         )}
@@ -58,16 +58,15 @@ export default function Header() {
 function navLinks() {
   return (
     <>
-      <Link href="/" className="hover:text-orange-500 transition-colors text-white dispoblock">الرئيسية</Link>
-      <Link href="/about" className="hover:text-orange-500 transition-colors text-white dispoblock">فريق العمل</Link>
-      <Link href="/aboutUS" className="hover:text-orange-500 transition-colors text-white dispoblock">عن المجلة</Link>
-            <Link href="/projects" className="hover:text-orange-500 transition-colors text-white dispoblock">مشاريعنا </Link>
-
-      <Link href="/editions" className="hover:text-orange-500 transition-colors text-white dispoblock">إصداراتنا</Link>
-      <Link href="/activities" className="hover:text-orange-500 transition-colors text-white dispoblock">الأنشطة</Link>
-      <Link href="/gallery" className="hover:text-orange-500 transition-colors text-white dispoblock">معرض الصور</Link>
-      <Link href="/contact" className="hover:text-orange-500 transition-colors text-white dispoblock">اتصل بنا</Link>
-      <Link href="/speditions" className="hover:text-orange-500 transition-colors text-white dispoblock">خاص بنا</Link>
+      <Link href="/" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">الرئيسية</Link>
+      <Link href="/about" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">فريق العمل</Link>
+      <Link href="/aboutUS" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">عن المجلة</Link>
+       <Link href="/projects" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">مشاريعنا </Link>
+      <Link href="/editions" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">إصداراتنا</Link>
+      <Link href="/activities" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">الأنشطة</Link>
+      <Link href="/gallery" className="hover:text-orange-500   classresponsborder  transition-colors text-white dispoblock">معرض الصور</Link>
+      <Link href="/contact" className="hover:text-orange-500    classresponsborder transition-colors text-white dispoblock">اتصل بنا</Link>
+      <Link href="/speditions" className="hover:text-orange-500    classresponsborder transition-colors text-white dispoblock">خاص بنا</Link>
 
     </>
   )

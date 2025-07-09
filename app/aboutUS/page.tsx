@@ -48,19 +48,19 @@ import Header from "@/components/Header"
                  
        </div>
              {/* Hero Section */}
-             <section className="py-16 relative overflow-hidden">
-         <div className="container mx-auto px-4">
-           <div className="text-center mb-12">
-             <h1 className="text-5xl font-bold text-purple-800 mb-6">نبذة عنا</h1>
-             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-               مجلة 8 كانون للأطفال، هي مجلة تعليمية ترفيهية مخصصة للأطفال، تهدف إلى تنمية مهاراتهم وقدراتهم الإبداعية من خلال
-               محتوى هادف وممتع
-             <br/>
-               يتواجد فريقنا في الداخل السوري مع شركائنا المحليين 
-             </p>
-           </div>
-         </div>
-       </section>
+<section className="py-16 relative overflow-hidden">
+<div className="container mx-auto px-4">
+<div className="text-center mb-12">
+<h1 className="text-5xl font-bold text-purple-800 mb-6">نبذة عنا</h1>
+<p className="text-xl text-gray-700 max-w-3xl mx-auto">
+مجلة 8 كانون للأطفال، هي مجلة تعليمية ترفيهية مخصصة للأطفال، تهدف إلى تنمية مهاراتهم وقدراتهم الإبداعية من خلال
+محتوى هادف وممتع
+<br/>
+يتواجد فريقنا في الداخل السوري مع شركائنا المحليين 
+</p>
+</div>
+</div>
+</section>
  
 
 
@@ -77,7 +77,7 @@ import Header from "@/components/Header"
                  alt="شخصية مجلة 8 كانون"
                  width={400}
                  height={400}
-                 className="w-full max-w-md mx-auto rounded-3xl shadow-2xl"
+                 className="w-full xlxly max-w-md mx-auto rounded-3xl shadow-2xl"
                />
              </div>
              

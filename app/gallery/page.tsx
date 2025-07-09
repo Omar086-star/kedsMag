@@ -117,15 +117,15 @@ return (
 
 
       <section
-        className="bg-fixed bg-center bg-cover text-white"
+        className="bg-fixed llxx bg-center bg-cover text-white"
         style={{
           backgroundImage: "url('/pont.jpg')",  minHeight: "50vh", display: "flex",   alignItems: "center", justifyContent: "center",  textAlign: "center",
         }}
       >
-  <section className="py-16 bg-cover bg-black coverS bg-opacity-50">
+  <section className="py-16  llxx bg-cover bg-black coverS bg-opacity-50">
 <div className="container mx-auto px-4">
 <div className="text-center mb-12">
-<h2 className="text-4xl py-20 font-bold violetCustom mb-4">  أرقام نسعى للحصول عليها</h2>
+<h2 className="text-4xl py-20 llxx font-bold violetCustom mb-4">  أرقام نسعى للحصول عليها</h2>
 <p className="text-xl text-gray-100">أرقام ستعكس نشاطنا وتفاعلنا</p>
 </div>
 

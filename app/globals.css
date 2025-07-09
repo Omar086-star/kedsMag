@@ -373,6 +373,37 @@ margin: 0 auto;
   text-align: center;
   margin: 0 auto;
 }
+.dirrr { 
+margin: 0px auto !important;
+text-align: center;
+ }
+.xxxl{
+  right: 0;
+}
+.butrespon{
+  max-width: 100% !important;
+  font-size: 14px !important;
+}
+
+.navbarrespons{
+
+margin: 0px auto !important;
+text-align: center;  
+}
+.classresponsborder{
+  border-bottom:0.5px solid #fa4d00 ;
+  margin-bottom: 2px;
+  padding: 0 0 2px 0 !important;
+}
+.xlxly{
+  width: 80% !important;
+}
+
+.llxx{
+  padding: 0 !important;
+  margin: 0;
+}
+
 }
 .flexDirR{
   flex-direction: column !important;
@@ -491,9 +522,14 @@ max-width: 50%;
 
 
 .hwfullss{
-  width: 100% !important;
+  max-width: 100% !important;
+display: flex;
 
-
+justify-content: end;
+color: #fa4d00;
+}
+.text-centerc{
+  justify-content: end !important;
 }
 .hwfull{
   max-width:100% !important;

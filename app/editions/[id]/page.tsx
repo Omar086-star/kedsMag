@@ -106,14 +106,10 @@ export default function EditionDetailPage() {
               height={700}
               className="rounded object-cover mx-auto"
             />
-            <div className="flex gap-2 hwfullss mt-4 justify-center">
-              <a href={edition.file_url} className="hwfullss" target="_blank">
-                {/* <Button className="bg-[#fa4d00] text-white px-4">
-                  <BookOpen className="w-4 h-4 ml-2" /> اقرأ الآن
-                </Button> */}
-              </a>
-              <Button onClick={handleDownload} className="bg-gradient-to-r from-purple-600 hwfullss to-blue-500 text-white px-4">
-                <Download className="w-4 h-4 ml-2 hwfullss" /> تحميل العدد
+            <div className=" gap-2 hwfullss mt-4 text-centerc">
+
+              <Button onClick={handleDownload} className="bg-gradient-to-r from-purple-600 hwfullss to-blue-500  ">
+                <Download className="w-4 h-4 ml-2 " /> تحميل العدد
               </Button>
             </div>
             <p className="text-sm text-gray-600 mt-2 text-center">

@@ -11,7 +11,7 @@ export default function FloatingBox() {
   return (
     <>
       {/* الزر الدائري المتحرك */}
-      <div className="fixed bottom-20 right-10 z-50 animate-float">
+      <div className="fixed xxxl bottom-20 right-10 z-50 animate-float">
         <button
           className="w-30 h-30 flex items-center justify-center textaurtre hover:scale-150 transition-transform  "
           title="أنا أساعدك إذا تريد ذلك !"
@@ -30,7 +30,7 @@ export default function FloatingBox() {
 
       {/* الرسالة المنبثقة */}
       {showPopup && (
-        <div className="fixed bottom-28 right-40 w-64 bg-white shadow-xl rounded-lg p-4 z-50 border border-purple-300">
+        <div className="fixed bottom-20 right-40 w-64 bg-white shadow-xl rounded-lg p-4 z-50 border border-purple-300">
           <h3 className="text-purple-700 font-bold mb-3 text-center">مرحباً بك يا صديقي ! 👋</h3>
           <p className="text-sm text-gray-700 text-center mb-4">
             كيف يمكنني مساعدتك اليوم؟

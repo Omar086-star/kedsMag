@@ -31,8 +31,8 @@ export default function Footer() {
 
     {/* تواصل معنا */}
     <div>
-      <h4 className="font-bold text-l mb-3">تواصل معنا</h4>
-      <div className="flex gap-2 mb-2">
+      <h4 className="font-bold text-l   mb-3">تواصل معنا</h4>
+      <div className="flex gap-20 dirrr mb-6">
         <a href="https://facebook.com"><Image src="/facebook.svg" alt="facebook" width={24} height={24} /></a>
         <a href="https://instagram.com"><Image src="/instagram.svg" alt="instagram" width={24} height={24} /></a>
         <a href="https://youtube.com"><Image src="/youtube.svg" alt="youtube" width={24} height={24} /></a>
@@ -64,6 +64,12 @@ export default function Footer() {
         <li><Link href="/projects">مشاريعنا</Link></li>
         <li><Link href="/editions">إصدارات المجلة</Link></li>
         <li><Link href="/activities">نشاطاتنا</Link></li>
+        <li><Link href="/gallery" >معرض الصور</Link></li>
+        <li> <Link href="/contact" >اتصل بنا</Link></li>
+        <li>   <Link href="/speditions" >خاص بنا</Link>
+</li>
+
+              
       </ul>
     </div>
 
