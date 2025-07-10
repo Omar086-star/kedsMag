@@ -122,6 +122,9 @@ export default function EditionDetailPage() {
             <p className="text-gray-700 leading-relaxed whitespace-pre-line">
               {edition.summary || "لا يوجد وصف متاح حالياً."}
             </p>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+              {edition.description || "لا يوجد وصف متاح حالياً."}
+            </p>
           </div>
         </div>
 
