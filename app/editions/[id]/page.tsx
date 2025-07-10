@@ -117,12 +117,12 @@ export default function EditionDetailPage() {
             </p>
           </div>
 
-          <div className="border border-purple-300 rounded-xl bg-white p-6 shadow">
-            <h2 className="text-2xl font-semibold text-[#fa4d00] mb-4">📝 محتوى العدد:</h2>
-            <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+          <div className="border border-purple-300 text-center rounded-xl bg-white p-6 shadow">
+            <h2 className="text-2xl font-semibold text-[#fa4d00] mb-4">  محتوى العدد </h2>
+            <p className="text-gray-700 text-center lsdD leading-relaxed whitespace-pre-line">
               {edition.summary || "لا يوجد وصف متاح حالياً."}
             </p>
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                <p className="text-gray-700 text-center lsdD leading-relaxed whitespace-pre-line">
               {edition.description || "لا يوجد وصف متاح حالياً."}
             </p>
           </div>

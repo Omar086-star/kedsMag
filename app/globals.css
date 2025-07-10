@@ -409,6 +409,15 @@ text-align: center;
   flex-direction: column !important;
   margin: 5px auto;
 }
+
+
+.lsdD{
+  max-width: 25% !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
 .mcentr{
   text-align: center;
   margin: 20px auto;

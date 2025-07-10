@@ -44,7 +44,7 @@ useEffect(() => {
               <Header />
       <Bubbles />
 
-      <h1 className="text-4xl font-bold text-center py-10 text-purple-700 mb-12">🎥 فيديوهاتنا</h1>
+      <h1 className="text-4xl font-bold text-center py-10 text-purple-700 mb-12"> فيديوهاتنا</h1>
 
       {mainVideo && (
         <section className="mb-20">
@@ -58,7 +58,7 @@ useEffect(() => {
       )}
 
       <section>
-        <h2 className="text-2xl font-semibold text-center text-orange-600  mb-6">📺 الفيديوهات الأخرى</h2>
+        <h2 className="text-2xl font-semibold text-center text-orange-600  mb-6"> الفيديوهات الأخرى</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-6">
           {otherVideos.map(video => (
             <div key={video.id} className="bg-gray-100 rounded-lg p-3 shadow">
