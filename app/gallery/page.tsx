@@ -87,16 +87,16 @@ return (
 
 <div className="grid pb-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 {filteredImages.map((img) => (
-  <Card key={img.id} className="overflow-hidden scale11 shadow border border-purple-100">
+  <Card key={img.id} className="overflow-hidden clasonetest scale11 shadow border border-purple-100">
     <div className="relative  h-56">
       <Image
         src={img.src || "/placeholder.svg"}
         alt={img.title}
         fill
-        className="object-cover"
+        className=" clasonetestimg"
       />
     </div>
-    <CardContent className="p-4 space-y-2">
+    <CardContent className="pyone  space-y-2">
       <h3 className="font-bold violetCustom">{img.title}</h3>
       <p className="text-sm text-gray-600">{img.description}</p>
       <div className="flex items-center gap-2 text-xs text-gray-500">

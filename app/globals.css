@@ -76,7 +76,18 @@
     flex-direction: row;
     display: flex;
   }
-
+.clasonetest{
+  width: 70% !important;
+  height: 60vh !important;
+}
+.pyone{
+  margin-bottom:0 !important;
+padding-top: 7rem !important;
+}
+.clasonetestimg{
+    width: 100% !important;
+  height: 40vh !important;
+}
   .COnimg{
     display: grid;
     flex-direction: row;
