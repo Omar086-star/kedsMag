@@ -56,173 +56,173 @@ export default function AdminDashboard() {
     fetchUser()
   }, [router])
 
+  const uploadToStorage = async (file: File, path: string) => {
+    const { error: uploadError } = await supabase.storage.from("uploads").upload(path, file, {
+      upsert: true,
+      cacheControl: "3600",
+    })
+    if (uploadError) throw new Error(uploadError.message)
+
+    const { data: publicUrlData } = supabase.storage.from("uploads").getPublicUrl(path)
+    return publicUrlData?.publicUrl || ""
+  }
+
   const handleUpload = async () => {
     if (!title || (!file && !coverFile)) {
       return alert("يرجى ملء العنوان وتحميل الملفات المطلوبة")
     }
 
-    let fileUrl = ""
-    let coverUrl = ""
+    try {
+      let fileUrl = ""
+      let coverUrl = ""
 
-    if (file) {
-      const fileExt = file.name.split(".").pop()
-      const fileName = `${Date.now()}.${fileExt}`
-      const filePath = `${contentType}/${fileName}`
-
-      const { error: uploadError } = await supabase.storage.from("uploads").upload(filePath, file, {
-        upsert: true,
-        cacheControl: "3600",
-      })
-      if (uploadError) return alert("فشل رفع الملف: " + uploadError.message)
-
-      const { data: publicUrlData } = supabase.storage.from("uploads").getPublicUrl(filePath)
-      fileUrl = publicUrlData?.publicUrl || ""
-    }
-
-    if (coverFile) {
-      const ext = coverFile.name.split(".").pop()
-      const name = `${contentType}/cover-${Date.now()}.${ext}`
-      const { error: coverErr } = await supabase.storage.from("uploads").upload(name, coverFile, {
-        upsert: true,
-        cacheControl: "3600",
-      })
-      if (!coverErr) {
-        const { data } = supabase.storage.from("uploads").getPublicUrl(name)
-        coverUrl = data?.publicUrl || ""
+      if (file) {
+        const fileExt = file.name.split(".").pop()
+        const fileName = `${contentType}/${Date.now()}.${fileExt}`
+        fileUrl = await uploadToStorage(file, fileName)
       }
-    }
 
-    let insertError: any = null
-    const commonData = {
-      title,
-      description,
-      location,
-      category,
-      file_url: fileUrl,
-      cover_url: coverUrl,
-      video_url: videoUrl,
-      status: "Published",
-    }
+      if (coverFile) {
+        const ext = coverFile.name.split(".").pop()
+        const name = `${contentType}/cover-${Date.now()}.${ext}`
+        coverUrl = await uploadToStorage(coverFile, name)
+      }
 
-    switch (contentType) {
-      case "documentary": {
-        const allowedVideoTypes = ["video/mp4", "video/webm", "video/ogg"]
-        if (!file || !allowedVideoTypes.includes(file.type)) {
-          return alert("يرجى رفع فيديو فقط في هذا القسم")
+      const commonData = {
+        title,
+        description,
+        location,
+        category,
+        file_url: fileUrl,
+        cover_url: coverUrl,
+        video_url: videoUrl,
+        status: "Published",
+      }
+
+      let insertError: any = null
+
+      switch (contentType) {
+        case "documentary": {
+          const allowedVideoTypes = ["video/mp4", "video/webm", "video/ogg"]
+          if (!file || !allowedVideoTypes.includes(file.type)) {
+            return alert("يرجى رفع فيديو فقط في هذا القسم")
+          }
+          const { error } = await supabase.from("videos").insert({
+            ...commonData,
+            is_main: isMain,
+            type: "video",
+          })
+          insertError = error
+          break
         }
-        const { error } = await supabase.from("videos").insert({
-          ...commonData,
-          is_main: isMain,
-          type: "video",
-        })
-        insertError = error
-        break
-      }
-      case "magazine": {
-        const { error } = await supabase.from("magazines").insert({
-          ...commonData,
-          summary,
-        })
-        insertError = error
-        break
-      }
-      case "special": {
-        const { error } = await supabase.from("speditions").insert({
-          ...commonData,
-          summary,
-        })
-        insertError = error
-        break
-      }
-      case "activitis": {
-        const { error } = await supabase.from("activities").insert(commonData)
-        insertError = error
-        break
-      }
-      case "future": {
-        const { error } = await supabase.from("activitesFuture").insert(commonData)
-        insertError = error
-        break
-      }
-      case "gallery": {
-        const { error } = await supabase.from("gallery").insert({
-          title,
-          description,
-          location,
-          category,
-          src: fileUrl,
-        })
-        insertError = error
-        break
-      }
-      case "coloring": {
-        const { error } = await supabase.from("coloring_activities").insert({
-          title,
-          description,
-          category,
-          file_url: fileUrl,
-          cover_url: coverUrl,
-        })
-        insertError = error
-        break
-      }
-case "distribution": {
-  if (!file) {
-    return alert("يرجى رفع صورة أو فيديو للتوزيع.");
-  }
+        case "magazine": {
+          const { error } = await supabase.from("magazines").insert({
+            ...commonData,
+            summary,
+          })
+          insertError = error
+          break
+        }
+        case "special": {
+          const { error } = await supabase.from("speditions").insert({
+            ...commonData,
+            summary,
+          })
+          insertError = error
+          break
+        }
+        case "activitis": {
+          const { error } = await supabase.from("activities").insert(commonData)
+          insertError = error
+          break
+        }
+        case "future": {
+          const { error } = await supabase.from("activitesFuture").insert(commonData)
+          insertError = error
+          break
+        }
+        case "gallery": {
+          const { error } = await supabase.from("gallery").insert({
+            title,
+            description,
+            location,
+            category,
+            src: fileUrl,
+          })
+          insertError = error
+          break
+        }
+        case "coloring": {
+          const { error } = await supabase.from("coloring_activities").insert({
+            title,
+            description,
+            category,
+            file_url: fileUrl,
+            cover_url: coverUrl,
+          })
+          insertError = error
+          break
+        }
+        case "distribution": {
+          if (!file) {
+            return alert("يرجى رفع صورة أو فيديو للتوزيع.")
+          }
 
-  const isVideo = file.type.startsWith("video")
-  const isImage = file.type.startsWith("image")
+          const isVideo = file.type.startsWith("video")
+          const isImage = file.type.startsWith("image")
 
-  if (!isVideo && !isImage) {
-    return alert("الملف يجب أن يكون صورة أو فيديو فقط.")
-  }
+          if (!isVideo && !isImage) {
+            return alert("الملف يجب أن يكون صورة أو فيديو فقط.")
+          }
 
-  const { error } = await supabase.from("distribution").insert({
-    ...commonData,
-    type: isVideo ? "video" : "image",
-  })
-  insertError = error
-  break
-}
-
-      case "projects": {
-        const { error } = await supabase.from("projects").insert({
-          title,
-          date: projectDate,
-          location,
-          participants: category,
-          category,
-          image: fileUrl,
-          file_url: fileUrl || ""
-        })
-        insertError = error
-        break
+          const { error } = await supabase.from("distribution").insert({
+            ...commonData,
+            type: isVideo ? "video" : "image",
+          })
+          insertError = error
+          break
+        }
+        case "projects": {
+          const { error } = await supabase.from("projects").insert({
+            title,
+            date: projectDate,
+            location,
+            participants: category,
+            category,
+            image: fileUrl,
+            file_url: fileUrl || ""
+          })
+          insertError = error
+          break
+        }
       }
-    }
 
-    if (insertError) {
-      console.error("Insert error:", insertError)
-      alert("خطأ أثناء الحفظ: " + (insertError?.message || "حدث خطأ غير متوقع"))
-    } else {
-      alert("تمت إضافة المحتوى بنجاح")
-      setTitle("")
-      setDescription("")
-      setLocation("")
-      setCategory("")
-      setAudience("")
-      setFile(null)
-      setCoverFile(null)
-      setSummary("")
-      setVideoUrl("")
-      setIsMain(false)
-      setProjectDate("")
+      if (insertError) {
+        console.error("Insert error:", insertError)
+        alert("خطأ أثناء الحفظ: " + (insertError?.message || "حدث خطأ غير متوقع"))
+      } else {
+        alert("تمت إضافة المحتوى بنجاح")
+        setTitle("")
+        setDescription("")
+        setLocation("")
+        setCategory("")
+        setAudience("")
+        setFile(null)
+        setCoverFile(null)
+        setSummary("")
+        setVideoUrl("")
+        setIsMain(false)
+        setProjectDate("")
+      }
+    } catch (err: any) {
+      alert("فشل رفع المحتوى: " + err.message)
     }
   }
 
   if (loading) {
     return <p className="text-center py-20 text-gray-600">جارٍ التحقق من الحساب...</p>
   }
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-2xl mx-auto">
