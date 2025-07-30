@@ -299,6 +299,8 @@ case "distribution": {
                 <>
                   <Label>الوصف</Label>
                   <Input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="شرح مختصر" />
+
+
                 </>
               )}
 
@@ -347,7 +349,13 @@ case "distribution": {
                       <SelectItem value="events">الفعاليات</SelectItem>
                       <SelectItem value="characters">الشخصيات</SelectItem>
                     </SelectContent>
+                  <Label>صورة الغلاف</Label>
+                  <Input type="file" accept="image/*" onChange={(e) => setCoverFile(e.target.files?.[0] || null)} />
+
+
                   </Select>
+
+
                 </>
               )}
 
