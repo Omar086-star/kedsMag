@@ -364,6 +364,12 @@ case "distribution": {
                 <>
                   <Label>تاريخ المشروع</Label>
                   <Input type="date" value={projectDate} onChange={(e) => setProjectDate(e.target.value)} />
+ <Label>الموقع</Label>
+    <Input value={location} onChange={(e) => setLocation(e.target.value)} placeholder="مثال: الرقة" />
+    <Label>الفئة</Label>
+  
+    <Input value={category} onChange={(e) => setCategory(e.target.value)} placeholder="مثال: مواد غذائية" />
+
                                 <Label>الملف الرئيسي</Label>
               <Input type="file" accept="application/pdf,image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
 

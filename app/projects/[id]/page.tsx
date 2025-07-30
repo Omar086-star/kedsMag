@@ -89,7 +89,9 @@ export default function ProjectDetailsPage() {
 
         <div className="mt-8 flex justify-center gap-4">
           <Button variant="outline" onClick={() => window.history.back()}>رجوع</Button>
-          <Button>التسجيل</Button>
+         <Button onClick={() => window.open(`/projects/${project.id}/register`, "_blank")}>
+  التسجيل
+</Button>     
         </div>
       </div>
             <FloatingBox />

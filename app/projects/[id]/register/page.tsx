@@ -73,7 +73,7 @@ export default function ProjectRegisterPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
-                  placeholder="الاسم"
+                  placeholder="الاسم والكنية"
                   className="border px-4 py-2 rounded"
                   value={p.name}
                   onChange={(e) => handleParticipantChange(i, "name", e.target.value)}
@@ -81,7 +81,7 @@ export default function ProjectRegisterPage() {
                 />
                 <input
                   type="text"
-                  placeholder="الكنية"
+                  placeholder="مدينة الفعالية المراد التسجيل بها"
                   className="border px-4 py-2 rounded"
                   value={p.surname}
                   onChange={(e) => handleParticipantChange(i, "surname", e.target.value)}

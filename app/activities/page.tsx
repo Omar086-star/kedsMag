@@ -321,12 +321,15 @@ export default function ActivitiesPage() {
 
             {/* الأزرار الأصلية */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+ <a href="/contact">    
               <Button
                 size="lg"
                 className="bg-white text-purple-700 hover:bg-gray-100 rounded-full px-8 py-4 text-lg font-bold"
               >
                 سجل في نشاط
               </Button>
+</a>
+
               <a href="/contact">
               <Button
                 size="lg"

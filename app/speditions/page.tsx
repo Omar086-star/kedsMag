@@ -162,9 +162,18 @@ export default function SpecialEditionsPage() {
               {/* قسم اليافعين */}
          <h2 className="  font-bold text-purple-800  textSpec mb-4">  أنا وأنت</h2>
         <div className="strII gap-8 py-6 mb-12"> {teens.map(renderEditionCard)} </div>   
-</div>   
+</div>  
+
+
+
+
    </div>
     
+    <div className="flexDirSedition borrrder py-10  strII ">
+           
+         <h2 className="  font-bold text-purple-800  textSpec mb-4">  قريباً جداً </h2>
+        <div className="strII gap-8 py-6 mb-12"> {teens.map(renderEditionCard)} </div>   
+</div> 
           </div>
 
       <FloatingBox />

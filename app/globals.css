@@ -69,6 +69,18 @@
   .text-force{
     color: #fa4d00 !important;
   }
+
+  .conimg{
+    width: 40px;
+    height: 40px;
+    flex-direction: row;
+    display: flex;
+  }
+
+  .COnimg{
+    display: grid;
+    flex-direction: row;
+  }
   .bg-none-force{
 background-color: none !important;  }
   .text-fs-force{

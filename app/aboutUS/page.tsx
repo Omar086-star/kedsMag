@@ -14,7 +14,7 @@ import Header from "@/components/Header"
  
 
    return (
-     <div className="min-h-screen relative bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100  px-6">
+     <div className="min-h-screen relative bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 ">
  
  <Header />
 

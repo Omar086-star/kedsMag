@@ -32,11 +32,11 @@ export default function Footer() {
     {/* تواصل معنا */}
     <div>
       <h4 className="font-bold text-l   mb-3">تواصل معنا</h4>
-      <div className="flex gap-20 dirrr ">
-        <a  href="https://facebook.com"><Image src="/facebook.svg" alt="facebook" width={24} height={24} /></a>
-        <a  href="https://instagram.com"><Image src="/instagram.svg" alt="instagram" width={24} height={24} /></a>
-        <a  href="https://youtube.com"><Image src="/youtube.svg" alt="youtube" width={24} height={24} /></a>
-        <a  href="https://linkedin.com"><Image src="/linkedin.svg" alt="linkedin" width={24} height={24} /></a>
+      <div className=" grid md:grid-cols-4  gap-5  ">
+        <a  href="https://facebook.com" className='conimg'><Image src="/facebook.svg" alt="facebook" width={30} height={24} /> </a>
+        <a  href="https://instagram.com" className='conimg' ><Image src="/instagram.svg" alt="instagram" width={30} height={24} /></a>
+        <a  href="https://youtube.com" className='conimg' ><Image src="/youtube.svg" alt="youtube" width={30} height={24} /></a>
+        <a  href="https://linkedin.com" className='conimg'><Image src="/linkedin.svg" alt="linkedin" width={30} height={24} /></a>
       </div>
       <p className="text-s">office@8kanoon.org</p>
       <p className="text-s">+33759889586</p>
