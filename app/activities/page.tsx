@@ -145,8 +145,8 @@ export default function ActivitiesPage() {
               <Card key={event.id} className="border-4 border-purple-200 hover:border-purple-400 transition-all bg-gradient-to-r from-purple-50 to-blue-50">
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row gap-6 items-center">
-                    <div className="relative w-32 h-32 flex-shrink-0">
-                      <Image src={event.cover_url || "/placeholder.svg"} alt={event.title} fill className="object-cover rounded-2xl" />
+                    <div className="relative w-64 h-64 flex-shrink-0">
+                      <Image src={event.cover_url || "/placeholder.svg"} alt={event.title} fill className="object-cover scale-1 rounded-2xl" />
                       <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>

@@ -46,14 +46,14 @@ export default function AllEventsPage() {
               >
                 <div className="p-6 flex flex-col md:flex-row gap-6 items-center">
                   <div
-                    className="relative w-32 h-32 flex-shrink-0 cursor-pointer"
+                    className="relative w-64 h-64 flex-shrink-0 cursor-pointer"
                     onClick={() => setSelectedImage(event.cover_url)}
                   >
                     <Image
                       src={event.cover_url || "/placeholder.svg"}
                       alt={event.title}
                       fill
-                      className="object-cover rounded-2xl"
+                      className="object-cover rounded-2xl scale-1"
                     />
                     <div className="absolute -top-2 -right-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                       {index + 1}

@@ -82,11 +82,24 @@
 }
 .pyone{
   margin-bottom:0 !important;
-padding-top: 5rem !important;
+padding-top: 6rem !important;
 }
 .clasonetestimg{
     width: 100% !important;
   height: 38vh !important;
+}
+
+.pponeI{
+  width: 100% !important;
+  height: 100% !important;
+}
+.oner{
+  width: 45% !important;
+  height: auto !important;
+  display: block;
+}
+.scale-1:hover{
+scale: 1.5;
 }
   .COnimg{
     display: grid;
@@ -371,7 +384,7 @@ margin: 0 auto;
 }
 
 .pyone{
-padding-top: 1rem !important ;
+padding-top: 7rem !important ;
 }
 .fsrespo{
   font-size: 18px !important;
