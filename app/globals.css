@@ -77,16 +77,16 @@
     display: flex;
   }
 .clasonetest{
-  width: 70% !important;
+  width: 100% !important;
   height: 60vh !important;
 }
 .pyone{
   margin-bottom:0 !important;
-padding-top: 7rem !important;
+padding-top: 5rem !important;
 }
 .clasonetestimg{
     width: 100% !important;
-  height: 40vh !important;
+  height: 38vh !important;
 }
   .COnimg{
     display: grid;
@@ -368,6 +368,10 @@ width: 80% !important;
 height: auto !important;
 padding: 0 !important;
 margin: 0 auto;
+}
+
+.pyone{
+padding-top: 1rem !important ;
 }
 .fsrespo{
   font-size: 18px !important;

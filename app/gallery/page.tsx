@@ -85,9 +85,9 @@ return (
 ))}
 </div>
 
-<div className="grid pb-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div className="grid pb-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1">
 {filteredImages.map((img) => (
-  <Card key={img.id} className="overflow-hidden clasonetest scale11 shadow border border-purple-100">
+  <Card key={img.id} className="overflow-hidden clasonetest scale11 shadow border gap-6 border-purple-100">
     <div className="relative  h-56">
       <Image
         src={img.src || "/placeholder.svg"}
@@ -100,7 +100,6 @@ return (
       <h3 className="font-bold violetCustom">{img.title}</h3>
       <p className="text-sm text-gray-600">{img.description}</p>
       <div className="flex items-center gap-2 text-xs text-gray-500">
-        <Calendar className="w-3 h-3" />
         <span>{img.date}</span>
       </div>
       <div className="flex items-center gap-2 text-xs text-gray-500">
