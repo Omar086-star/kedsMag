@@ -59,7 +59,7 @@ export default function FloatingBox() {
             </button>
             <button
               onClick={() => router.push('/donate')}
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 text-sm"
+              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 text-l"
             >
                  تبرع لنا 
             </button>

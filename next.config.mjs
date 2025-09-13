@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // باقي الإعدادات...
-  allowedDevOrigins: [
-    "http://192.168.1.54:3000", // جهازك المحلي أو الهاتف
-    "http://localhost:3000",    // المتصفح المحلي
-    "http://192.168.1.54:3001"  // في حال استخدم بورت آخر
-  ],
   images: {
     remotePatterns: [
       {
@@ -13,6 +7,9 @@ const nextConfig = {
         hostname: "gxpdftfiwlyaboiucsti.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "i.imgur.com" },
       {
         protocol: "https",
         hostname: "hebbkx1anhila5yf.public.blob.vercel-storage.com",
@@ -20,12 +17,12 @@ const nextConfig = {
       },
     ],
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-}
 
-export default nextConfig
+  // إذا ظهر عندك تحذير تتبّع الملفات في monorepo:
+  // outputFileTracingRoot: __dirname,
+
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+};
+
+export default nextConfig;

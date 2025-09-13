@@ -106,13 +106,13 @@ export default function SpecialEditionsPage() {
         }}
       >
         <div className="bg-black coverS bg-opacity-50 p-8 rounded-lg">
-                     <h3 className="text-3xl py-20 w-full font-bold mb-2">الإصدارات الخاصة</h3>
+                     <h3 className="text-3xl spetexttit py-20 w-full font-bold mb-2">الإصدارات الخاصة</h3>
         <p className="text-center text-white text-2xl  mb-12  max-w-2xl mx-auto"> اكتشف محتوياتنا المخصصة للأمهات الجدد واليافعين.</p>
         <div className="dison"> 
        <div className="disons">
-                             <h3 className="text-3xl py-6 w-full font-bold mb-2">نخلة </h3>
+                             <h3 className="text-3xl py-6 w-full disflsex font-bold mb-2">نخلة </h3>
 
-   <p className="text-center text-white text-2xl   max-w-2xl mx-auto">   
+   <p className=" text-white text-2xl   max-w-2xl mx-auto spetext">   
            محتوانا الخاص الموجه للأمهات الجدد واسمه نخلة 
 <br/>
           نخلة التي تبقى شامخة , نخلة التي تتحمل قسوة الطبيعة وجفافها 
@@ -125,9 +125,9 @@ export default function SpecialEditionsPage() {
        </div>
 
       <div className="disons">
-                             <h3 className="text-3xl py-6 w-full font-bold mb-2">أنا و أنت </h3>
+                             <h3 className="text-3xl py-6 w-full disflsex font-bold mb-2">أنا و أنت </h3>
 
-          <p className="text-center text-white text-2xl  max-w-2xl mx-auto"> أنا وأنت 
+          <p className="text-center text-white text-2xl  max-w-2xl mx-auto spetext"> أنا وأنت 
           هذا المحتوى لي ولك يا صديقي 
 
           لكي نكون سويا شركاء في   <br/>  بناء بلدنا ومستقبلنا 

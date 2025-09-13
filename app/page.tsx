@@ -363,248 +363,290 @@
 
 
 
-
-
-"use client"
+ "use client"
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { BookOpen, Calendar, Camera, Users, Download, Play, Star, Heart } from "lucide-react"
+import { BookOpen, Camera, Download, Play, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { supabase } from "@/lib/supabase"
-import Bubbles from "@/components/Bubbles";
-import MagazineSlider from "@/components/MagazineSlider";
+import Bubbles from "@/components/Bubbles"
+import MagazineSlider from "@/components/MagazineSlider"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
-import FloatingBox from '@/components/FloatingBox';
-
+import FloatingBox from "@/components/FloatingBox"
 
 export default function HomePage() {
   const [magazines, setMagazines] = useState<any[]>([])
   const [activites, setActivites] = useState<any[]>([])
+
+  // ===== AI full-page translation overlay =====
+  const [aiHtml, setAiHtml] = useState<string | null>(null)
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiError, setAiError] = useState<string | null>(null)
+
+  async function aiTranslateWholePage() {
+    try {
+      setAiLoading(true)
+      setAiError(null)
+      setAiHtml(null)
+
+      // نأخذ فقط محتوى الـ <body> (بدون سكربتات) لتقليل الحجم
+      const bodyHtml = document.body.innerHTML
+
+      const r = await fetch("/api/ai-translate-html", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          html: bodyHtml,
+          target: "EN", // ترجمة الصفحة كاملة للإنجليزية
+        }),
+      })
+
+      const data = await r.json()
+      if (!r.ok || data.error) throw new Error(data.error || "Translation failed")
+
+      setAiHtml(String(data.html || ""))
+    } catch (e: any) {
+      setAiError(e?.message || "Unexpected error")
+    } finally {
+      setAiLoading(false)
+    }
+  }
+
+  function closeOverlay() {
+    setAiHtml(null)
+    setAiError(null)
+    setAiLoading(false)
+  }
+
   useEffect(() => {
     async function fetchData() {
-      const { data: mags, error: magsError } = await supabase.from("magazines").select("*").order("date", { ascending: false });
-      const { data: acts, error: actsError } = await supabase.from("activities").select("*").order("date", { ascending: false });
+      const { data: mags, error: magsError } = await supabase
+        .from("magazines")
+        .select("*")
+        .order("date", { ascending: false })
+
+      const { data: acts, error: actsError } = await supabase
+        .from("activities")
+        .select("*")
+        .order("date", { ascending: false })
 
       if (magsError || actsError) {
-        console.log("    جلب بيانات المجلات:", magsError);
-        console.log("    جلب بيانات الأنشطة:", actsError);
+        console.log("    جلب بيانات المجلات:", magsError)
+        console.log("    جلب بيانات الأنشطة:", actsError)
       } else {
-        setMagazines(mags || []);
-        setActivites(acts || []);
-
+        setMagazines(mags || [])
+        setActivites(acts || [])
       }
-      
     }
-
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
+      {/* زر الترجمة الذكية */}
 
-<Header/>
-<Bubbles />
 
-<section className="relative overflow-hidden py-16">
-  {/* الخلفية المتدرجة والفُقاعات */}
-  <div className="absolute inset-0 bgi z-0">
-    
-  </div>
+      <Header />
+      <Bubbles />
 
-  <div className="container mx-auto px-4 relative z-20">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-      {/* النصوص */}
-      <div className="text-center md:text-right text-white">
-        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-bold mb-6 animate-bounce">
-          <Star className="w-4 h-4" />
-          مجلة تعليمية ممتعة للأطفال
-          <Star className="w-4 h-4" />
+      {/* Hero */}
+      <section className="relative overflow-hidden py-16">
+        <div className="absolute inset-0 bgi z-0"></div>
+
+        <div className="container mx-auto px-4 relative z-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* نصوص عربية أصلية */}
+            <div className="text-center md:text-right text-white">
+              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-bold mb-6 animate-bounce">
+                <Star className="w-4 h-4" />
+                مجلة تعليمية ممتعة للأطفال
+                <Star className="w-4 h-4" />
+              </div>
+
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                مرحباً بكم في
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 pt-2 to-yellow-300">
+                  مجلة 8 كانون للأطفال
+                </span>
+              </h1>
+
+              <p className="text-xl text-white mb-8 leading-relaxed">
+                مجلة تعليمية ترفيهية مخصصة للأطفال، تحتوي على قصص مشوقة، أنشطة تفاعلية، ومحتوى تعليمي يساعد الأطفال على
+                التعلم والنمو بطريقة ممتعة.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
+                <a href="/ourPromo">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all"
+                  >
+                    <BookOpen className="w-5 h-5 mr-2" />
+                    سيرتنا البصرية بين يديك
+                  </Button>
+                </a>
+                <a href="https://www.youtube.com/watch?v=9y_6tQJfoww" className="">
+                  <Button
+                    size="lg"
+                    className="border-2  border-purple-200  text-white  rounded-full px-8 py-4 text-lg font-bold"
+                  >
+                    <Play className="w-5 h-5 mr-2" />
+                    شاهد قناتنا
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Slider */}
+            <div className="relative w-full max-w-md mx-auto z-30">
+              <MagazineSlider />
+            </div>
+          </div>
         </div>
+      </section>
 
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          مرحباً بكم في
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 pt-2 to-yellow-300">
-            مجلة 8 كانون للأطفال
-          </span>
-        </h1>
-
-        <p className="text-xl text-white mb-8 leading-relaxed">
-          مجلة تعليمية ترفيهية مخصصة للأطفال، تحتوي على قصص مشوقة، أنشطة تفاعلية، ومحتوى تعليمي يساعد الأطفال على
-          التعلم والنمو بطريقة ممتعة.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
-         <a href="/ourPromo"> 
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-4 text-lg font-bold shadow-xl transform hover:scale-105 transition-all"
-          >
-            <BookOpen className="w-5 h-5 mr-2" />
-            سيرتنا البصرية بين يديك  
-          </Button>
-</a>
-          <a href="https://www.youtube.com/watch?v=9y_6tQJfoww" className="">
-            <Button
-              size="lg"
-              className="border-2  border-purple-200  text-white  rounded-full px-8 py-4 text-lg font-bold"
+      {/* EDITIONS */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 violetCustom">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold disBlock violetCustom mb-4">أحدث الإصدارات</h2>
+          <p className="text-xl text-gray-600">اكتشف أحدث أعداد مجلتنا المليئة بالمتعة والتعلم</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 itemsCent gap-2 px-4">
+          {magazines.slice(0, 3).map((issue) => (
+            <Card
+              key={issue.id}
+              className="overflow-hidden border-4 border-purple-200 hover:border-purple-400 transition-all transform hover:scale-105 hover:shadow-2xl bg-white"
             >
-              <Play className="w-5 h-5 mr-2" />
-              شاهد قناتنا
-            </Button>
+              <Link href={`/editions/${issue.id}`} className="block">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={issue.cover_url || "/placeholder.svg"}
+                    alt={issue.title}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform hover:scale-110"
+                  />
+                  <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    جديد
+                  </div>
+                </div>
+              </Link>
+
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold violetCustom mb-2">{issue.title}</h3>
+                <p className="text-gray-600 mb-4">{issue.date}</p>
+                <div className="hwfullss gap-2">
+                  <Link href={`/editions/${issue.id}`} className="hwfullss">
+                    <Button variant="ghost" className="hwfullss bg-purple-600 text-white">👁️ شاهد هذا العدد</Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+          <Link href="/editions">
+            <Button className="mt-4 mx-auto bg-purple-600 text-white boxnexT px-6">عرض كل الأعداد</Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* ACTIVITIES */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold violetCustom mb-4">أنشطة وفعاليات</h2>
+            <p className="text-xl text-gray-600">شاهد أحدث أنشطتنا وفعالياتنا التعليمية</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {activites.length === 0 && (
+              <p className="col-span-full text-center text-gray-400">لا توجد أنشطة حالياً.</p>
+            )}
+            {activites.length === 0 && (
+              <p className="col-span-full text-center text-gray-400">لا توجد أنشطة حالياً.</p>
+            )}
+            {activites.map((activite) => (
+              <Card key={activite.id} className="overflow-hidden border-4 border-green-200 hover:border-green-400 transition-all transform hover:scale-105 hover:shadow-2xl bg-white">
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={activite.cover_url || "/default-cover.jpg"}
+                    alt={activite.title}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform hover:scale-110"
+                  />
+                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">نشاط</div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-green-800 mb-2">{activite.title}</h3>
+                  <p className="text-gray-600 mb-4">{activite.date}</p>
+                  <div className="flex gap-2">
+                    <a href={`/activities/${activite.id}`} className="flex-1">
+                      <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full">
+                        <BookOpen className="w-4 h-4 mr-2" /> عرض النشاط
+                      </Button>
+                    </a>
+                    <a href={activite.file_url} download>
+                      <Button variant="outline" className="border-2 border-green-500 text-green-700 rounded-full">
+                        <Download className="w-4 h-4" />
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <a href="/activities">
+            <div className="text-center mt-8">
+              <Button size="lg" className="bg-gradient-to-r from-green-600 to-blue-500 hover:from-green-700 hover:to-blue-600 text-white rounded-full px-8 py-4 text-lg font-bold shadow-xl">
+                <Camera className="w-5 h-5 mr-2" /> شاهد المزيد من الأنشطة
+              </Button>
+            </div>
           </a>
         </div>
+      </section>
 
-      </div>
+      <FloatingBox />
+      <Footer />
 
-      {/* عرض الغلاف والفقاعات في القسم الثاني */}
-      <div className="relative w-full max-w-md mx-auto z-30">
-        <MagazineSlider />
+      {/* ===== Overlay: shows AI-translated full HTML via iframe ===== */}
+      {(aiHtml || aiLoading || aiError) && (
+        <div className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm">
+          <div className="absolute top-4 left-4 right-4 flex justify-between items-center gap-2">
+            <div className="text-white text-sm">
+              {aiLoading ? "Translating page to English…" : aiError ? `Error: ${aiError}` : "AI Translation (preview)"}
+            </div>
+            <Button onClick={closeOverlay} variant="secondary" className="rounded-full">Close</Button>
+          </div>
 
+          {aiLoading && (
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="text-white text-lg">Working…</div>
+            </div>
+          )}
 
-
-      </div>
-    </div>
-  </div>
-</section>
-
-     
-      {/* EDITIONS Section */}
-
-<section className="py-16 bg-gradient-to-br from-blue-50 violetCustom">
-<div className="text-center mb-12">
-<h2 className="text-4xl font-bold disBlock violetCustom mb-4">أحدث الإصدارات</h2>
-<p className="text-xl text-gray-600">اكتشف أحدث أعداد مجلتنا المليئة بالمتعة والتعلم</p>
-</div>
-<div className="grid md:grid-cols-2 lg:grid-cols-4 itemsCent gap-2 px-4">
-{magazines.slice(0, 3).map((issue) => (
-  <Card
-    key={issue.id}
-    className="overflow-hidden border-4 border-purple-200 hover:border-purple-400 transition-all transform hover:scale-105 hover:shadow-2xl bg-white"
-  >
-    <Link href={`/editions/${issue.id}`} className="block">
-      <div className="relative h-64 overflow-hidden">
-        <Image
-          src={issue.cover_url || "/placeholder.svg"}
-          alt={issue.title}
-          fill
-          unoptimized
-          className="object-cover transition-transform hover:scale-110"
-        />
-        <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-          جديد
+          {aiHtml && !aiLoading && !aiError && (
+            <iframe
+              title="AI Translated Page"
+              className="absolute inset-4 rounded-xl shadow-2xl bg-white"
+              // نعرض HTML مترجم بالكامل داخل iframe مستقل
+              srcDoc={`<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <base href="${typeof window !== "undefined" ? window.location.origin : "/"}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 16px}</style>
+</head>
+<body>${aiHtml}</body>
+</html>`}
+            />
+          )}
         </div>
-      </div>
-    </Link>
-
-<CardContent className="p-6">
-<h3 className="text-xl font-bold violetCustom mb-2">{issue.title}</h3>
-<p className="text-gray-600 mb-4">{issue.date}</p>
-<div className="hwfullss gap-2">
-{/* <Button
-className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full"
-onClick={() => window.open(issue.file_url, '_blank')}
->
-<BookOpen className="w-4 h-4 mr-2" /> اقرأ الآن
-</Button> */}
-<Link href={`/editions/${issue.id}`} className="hwfullss"><Button variant="ghost" className="hwfullss bg-purple-600 text-white">👁️ شاهد هذا العدد</Button></Link>
-
-</div>
-</CardContent>
-
-  </Card>
-  
-))}
-<Link href="/editions">
-  <Button className="mt-4 mx-auto bg-purple-600 text-white boxnexT px-6">عرض كل الأعداد</Button>
-</Link>
-</div>
-
-</section>
-
-      {/* ACTIVITES Section */}
-
-<section className="py-16 bg-white">
-<div className="container mx-auto px-4">
-<div className="text-center mb-12">
-  <h2 className="text-4xl font-bold violetCustom mb-4">أنشطة وفعاليات</h2>
-  <p className="text-xl text-gray-600">شاهد أحدث أنشطتنا وفعالياتنا التعليمية</p>
-</div>
-
-<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {activites.length === 0 && (
-    <p className="col-span-full text-center text-gray-400">لا توجد أنشطة حالياً.</p>
-  )}
-{activites.length === 0 && (
-<p className="col-span-full text-center text-gray-400">لا توجد أنشطة حالياً.</p>
-)}
-{activites.map((activite) => (
-<Card key={activite.id} className="overflow-hidden border-4 border-green-200 hover:border-green-400 transition-all transform hover:scale-105 hover:shadow-2xl bg-white">
-<div className="relative h-64 overflow-hidden">
-  <Image
-    src={activite.cover_url || "/default-cover.jpg"}
-    alt={activite.title}
-    fill
-    unoptimized
-    className="object-cover transition-transform hover:scale-110"
-  />
-  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">نشاط</div>
-</div>
-<CardContent className="p-6">
-  <h3 className="text-xl font-bold text-green-800 mb-2">{activite.title}</h3>
-  <p className="text-gray-600 mb-4">{activite.date}</p>
-  <div className="flex gap-2">
-
-
-    {/* <a href={activite.file_url} target="_blank" rel="noopener noreferrer" className="flex-1">
-      <Button className="w-full bg-gradient-to-r from-green-600 to-blue-500 text-white rounded-full">
-        <BookOpen className="w-4 h-4 mr-2" /> شاهد النشاط
-      </Button>
-    </a> */}
-
-
-<a href={`/activities/${activite.id}`} className="flex-1">
-  <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full">
-    <BookOpen className="w-4 h-4 mr-2" /> عرض النشاط
-  </Button>
-</a>
-
-
-
-
-
-    {/* <a href={activite.file_url} target="_blank" rel="noopener noreferrer" className="flex-1">
-      <Button className="w-full bg-gradient-to-r from-green-600 to-blue-500 text-white rounded-full">
-        <BookOpen className="w-4 h-4 mr-2" /> أقرأ النشاط
-      </Button> */}
-    {/* </a> */}
-    <a href={activite.file_url} download>
-      <Button variant="outline" className="border-2 border-green-500 text-green-700 rounded-full">
-        <Download className="w-4 h-4" />
-      </Button>
-    </a>
-  </div>
-</CardContent>
-</Card>
-))}
-</div>
-<a href="/activities"  > 
-<div className="text-center mt-8">
-  <Button size="lg" className="bg-gradient-to-r from-green-600 to-blue-500 hover:from-green-700 hover:to-blue-600 text-white rounded-full px-8 py-4 text-lg font-bold shadow-xl">
-    <Camera className="w-5 h-5 mr-2" /> <link></link> شاهد المزيد من الأنشطة
-  </Button>
-</div>
-</a>
-</div>
-</section>
-
-
-<FloatingBox />
-<Footer/>
-
-</div>
-)
+      )}
+    </div>
+  )
 }
