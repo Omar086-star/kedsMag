@@ -23,10 +23,10 @@ export default function Footer() {
     <div className="text-center  ">
       <h4 className="font-bold text-2xl  sccalls gap-5 mb-3">شركائنا</h4>
       <a href="https://salam-ngo.org/">
-        <Image src="/logosalam.png" alt="  سلام لتنمية المجتمعية" width={70} height={70} className="mx-auto sccall sccallsx rounded-full xder p-2" />
+        <Image src="/logosalam.png" alt="  سلام لتنمية المجتمعية" width={100} height={80} className="mx-auto sccall sccallsx  p-2" />
       </a>
             <a href="https://syria-rebuild.com/ar/">
-        <Image src="/logobw2.png" alt="  قنوات إعادة الإعمار"  width={70} height={70} className="mx-auto sccall sccallsx rounded-full xder p-2" />
+        <Image src="/logobw2.png" alt="  قنوات إعادة الإعمار"  width={100} height={80} className="mx-auto sccall sccallsx   p-2" />
       </a>
     </div>
 

@@ -1,8 +1,11 @@
+// app/layout.tsx
 import type React from "react";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
 import AITranslateProvider from "@/components/AITranslateProvider";
+import Header from "@/components/Header";     // ← اختياري لكن مفضل
+import Footer from "@/components/Footer";     // ← اختياري
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -21,8 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl" className={cairo.variable}>
       <body className="font-cairo bg-white text-gray-800">
         <AITranslateProvider>
-            <main>{children}</main>
-
+          {/* <Header /> */}
+          <main>{children}</main>
+          {/* <Footer /> */}
         </AITranslateProvider>
       </body>
     </html>

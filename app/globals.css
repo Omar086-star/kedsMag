@@ -379,8 +379,13 @@ padding-top: -50px !important;
     --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #fe7403a6), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
- 
+.textreddd{
+  color: #fcfcfb ;
+}
+.bggggg{
+  background-color: #3a00cc;
+  color: #fcfcfb;
+}
     
 .width33{
   display: flex;

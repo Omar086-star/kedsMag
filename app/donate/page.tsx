@@ -193,12 +193,12 @@ export default function DonatePage() {
                       <h3 className="text-lg font-bold">طريقة الدفع</h3>
                       <Tabs defaultValue="paypal" className="w-full">
                         <TabsList className="grid w-full grid-cols-3">
-                          <TabsTrigger value="card" className="flex items-center gap-2">
+                          {/* <TabsTrigger value="card" className="flex items-center gap-2">
                             <CreditCard className="h-4 w-4" /> بطاقة
                           </TabsTrigger>
                           <TabsTrigger value="bank" className="flex items-center gap-2">
                             <Landmark className="h-4 w-4" /> حوالة
-                          </TabsTrigger>
+                          </TabsTrigger> */}
                           <TabsTrigger value="paypal" className="flex items-center gap-2">
                             <Wallet className="h-4 w-4" /> PayPal
                           </TabsTrigger>
