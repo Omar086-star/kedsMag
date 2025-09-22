@@ -8,7 +8,7 @@ import Header from "@/components/Header"
 
 export default function NatureExplorationPage() {
   return (
-    <div className="min-h-screen bg-green-50 p-6">
+    <div className="min-h-screen bg-green-50 py-6">
 
 <Header />
 

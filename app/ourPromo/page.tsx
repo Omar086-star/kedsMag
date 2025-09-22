@@ -40,7 +40,7 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen bg-white px-6 ">
+    <div className="min-h-screen bg-white   ">
               <Header />
       <Bubbles />
 

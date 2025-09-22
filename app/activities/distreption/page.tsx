@@ -45,7 +45,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 px-6 ">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100   ">
         <Header />
 
       <h1 className="text-4xl font-bold text-center text-purple-800 mb-10 py-10">

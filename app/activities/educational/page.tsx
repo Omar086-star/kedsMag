@@ -24,7 +24,7 @@ export default function EducationalActivitiesPage() {
   }, [])
 
   return (
-    <div className=" px-6">
+    <div className=" ">
       <Header />
 
       <h1 className="  font-bold violetCustom mt-8 text-center text-4xl   text-[#3a00cc] mb-4">أنشطة تربوية</h1>

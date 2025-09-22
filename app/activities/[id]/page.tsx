@@ -19,7 +19,7 @@ export default async function ActivityPage({ params }: { params: { id: string } 
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
 
               <Header />
-      <section className="px-6 py-12 hwfulls">
+      <section className="  py-12 hwfulls">
 
                     <div className="mt-4 w-full ">
 

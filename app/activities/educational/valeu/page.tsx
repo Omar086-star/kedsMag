@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 
 export default function ValuesActivitiesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-100 text-gray-800 px-6 py-10 text-center space-y-10">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-pink-50 to-purple-100 text-gray-800  py-10 text-center space-y-10">
       <Header />
 
       <section className="bg-white p-6 rounded-xl shadow">

@@ -6,7 +6,7 @@ import Header from "@/components/Header"
 
 export default function gameD() {
   return (
-    <div className="min-h-screen  p-6 bg-white p-6 rounded-xl shadow">
+    <div className="min-h-screen  py-6 bg-white p-6 rounded-xl shadow">
               <Header />
 
       <h1 className=" text-4xl  text-[#3a00cc] mt-4  font-bold text-center  mb-8">

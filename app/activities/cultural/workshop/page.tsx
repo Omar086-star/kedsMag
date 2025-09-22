@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 
 export default function DrawingColoringWorkshopPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-yellow-50 to-pink-100 text-gray-800 px-6 space-y-10 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-yellow-50 to-pink-100 text-gray-800   space-y-10 text-center">
       <Header />
 
       <h1 className="text-4xl font-bold text-[#cc007a] mb-8">

@@ -8,7 +8,7 @@ import Header from "@/components/Header"
 
 export default function OutdoorGamesPage() {
   return (
-    <div className="min-h-screen bg-yellow-50 p-6">
+    <div className="min-h-screen bg-yellow-50 py-6">
             <Header />
 
       <h1 className="text-3xl font-bold text-center text-yellow-700 mb-8">

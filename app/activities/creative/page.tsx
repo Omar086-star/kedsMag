@@ -24,7 +24,7 @@ export default function CreativeActivitiesPage() {
   }, [])
 
   return (
-    <div className=" px-6">
+    <div className="  ">
       <Header />
 
       <h1 className="text-3xl font-bold violetCustom mb-8 text-center">أنشطة إبداعية</h1>

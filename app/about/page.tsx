@@ -19,12 +19,16 @@ export default function AboutPage() {
     { name: "أ. محمد الأحمد",    role: "مديـر فريق الــتصــميم", description: "        ⭐", image: "/mohammad.png" },
     { name: "د. عمر الشحادة",   role: "مدير فريق الدعم النفسي", description: "⭐           ", image: "/omarsh.png" },
     { name: "أ. آية الفندي",    role: "مسؤولة الـعلاقات العامة", description: "⭐        ", image: "/aya.png" },
-        { name: "م. فراس اليونس  ",    role: "مسؤول التواصل ", description: "⭐        ", image: "/firas.png" },
+    { name: "م. فراس اليونس  ",    role: "مسؤول التواصل ", description: "⭐        ", image: "/firas.png" },
+        { name: "أ. بشير مشعان",   role: "مسؤول المــكتب التقــني", description: "  ⭐    ", image: "/bashier.png" },
+
+    { name: "أ. فرحة الحرويل  ",    role: "قائد فريق ", description: "⭐        ", image: "/farah.png" },
 
     { name: "أ. زهراء عقيل",    role: "مسؤولة الـتدقيق اللغوي", description: "⭐        ", image: "/zahraa.png" },
     { name: "أ. بتول هنداوي",   role: "مسؤولة التـسويق الرقمي", description: "⭐        ", image: "/batoul.png" },
     { name: "أ. أنسام داوود",   role: "مسؤولة الموارد البشرية", description: "    ⭐     ", image: "/ansam.png" },
-    { name: "أ. بشير مشعان",   role: "مسؤول المــكتب التقــني", description: "  ⭐    ", image: "/bashier.png" },
+        { name: "أ. إسراء الحمد  ",    role: "مساعدة موارد بشرية ", description: "⭐        ", image: "/israa.png" },
+
     { name: "أ. ديالا مطر",      role: "فــريــق الـتحــريـــر", description: "⭐          ", image: "/dyala.png" },
     { name: "أ. هيفاء درويش",   role: "فــريــق الـتحــريـــر", description: "⭐        ", image: "/haifa.png" },
     { name: "أ. إيمان الموسى ",    role: "فــريــق الـتحــريـــر", description: "⭐   ", image: "/eman.png" },
@@ -40,12 +44,12 @@ export default function AboutPage() {
     team.slice(0, 1),
 
     team.slice(1, 4),
-    team.slice(4, 7),
+    team.slice(4, 8),
 
-    team.slice(7, 10),
-    team.slice(10, 13),
-    team.slice(13, 16),
-    team.slice(16, 20),
+    team.slice(8, 12),
+    team.slice(12, 15),
+    team.slice(15, 18),
+    team.slice(18, 22),
 
 
 

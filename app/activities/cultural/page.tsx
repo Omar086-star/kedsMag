@@ -24,7 +24,7 @@ export default function CulturalActivitiesPage() {
   }, [])
 
   return (
-    <div  className=" px-6">
+    <div  className=" ">
       <Header />
 
       <h1 className="text-3xl font-bold violetCustom py-12 mb-8 text-center">أنشطة ثقافية</h1>
