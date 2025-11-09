@@ -89,10 +89,14 @@ export default function Footer() {
     </div>
 
   </div>
+ <Link href={'/MentionsLegales'}>
+   <div className="text-center text-white border-t border-white mt-10 pt-6 text-l">
 
-  <div className="text-center text-white border-t border-white mt-10 pt-6 text-l">
     &copy; 2025 مجلة 8 كانون للأطفال. جميع الحقوق محفوظة.
+
   </div>
+ </Link>
+
 </footer>
 
     </div>
