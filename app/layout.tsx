@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "مجلة 8 كانون للأطفال",
   description: "مجلة تعليمية ترفيهية للأطفال...",
   generator: "mulla-web.dev",
+  verification: {
+    google: "2e76X_6xxB8imYzBtEI9OrE4tQsKjJbCcM25Mdqr-Lo",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
