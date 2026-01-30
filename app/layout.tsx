@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type React from "react"
 import type { Metadata } from "next"
 import { Cairo } from "next/font/google"
@@ -21,8 +22,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = cookies()
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+
   const locale = (cookieStore.get("locale")?.value as "ar" | "fr" | "en") || "ar"
   const dir = locale === "ar" ? "rtl" : "ltr"
 

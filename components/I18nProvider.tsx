@@ -1,73 +1,60 @@
 "use client"
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react"
-import type { Locale } from "@/lib/i18n"
-import { defaultLocale, getDirection } from "@/lib/i18n"
-import { getTranslations } from "@/lib/translations"
+import React, { createContext, useContext, useMemo, useState, useEffect } from "react"
+import { translations } from "@/lib/translations" // غيّر المسار حسب مشروعك
 
-type I18nCtx = {
+export type Locale = "ar" | "en" | "fr"
+
+type I18nContextType = {
   locale: Locale
-  dir: "rtl" | "ltr"
-  tr: ReturnType<typeof getTranslations>
   setLocale: (l: Locale) => void
+  tr: any
 }
 
-const Ctx = createContext<I18nCtx | null>(null)
+const I18nContext = createContext<I18nContextType | null>(null)
 
-function safeGet(key: string) {
-  try {
-    return localStorage.getItem(key)
-  } catch {
-    return null
+export function I18nProvider({
+  children,
+  initialLocale,
+}: {
+  children: React.ReactNode
+  initialLocale: Locale
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale)
+
+  const setLocale = (l: Locale) => {
+    setLocaleState(l)
+    // خزّنها حتى تبقى ثابتة + تمنع hydration mismatch لاحقاً
+    document.cookie = `locale=${l}; path=/; max-age=31536000`
+    try {
+      localStorage.setItem("locale", l)
+    } catch {}
   }
-}
-function safeSet(key: string, val: string) {
-  try {
-    localStorage.setItem(key, val)
-  } catch {}
-}
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    const saved = safeGet("ui-locale") as Locale | null
-    return saved === "ar" || saved === "en" || saved === "fr" ? saved : defaultLocale
-  })
-
-  const dir = getDirection(locale)
-
+  // (اختياري) لو كان عندك localStorage قديم، وخايف تعمل mismatch
+  // ما منبدّل initial state منه، بس ممكن نزامن إذا موجود
   useEffect(() => {
-    document.documentElement.lang = locale
-    document.documentElement.dir = dir
-    safeSet("ui-locale", locale)
-  }, [locale, dir])
+    try {
+      const saved = localStorage.getItem("locale") as Locale | null
+      if (saved && saved !== locale && (saved === "ar" || saved === "en" || saved === "fr")) {
+        setLocaleState(saved)
+        document.cookie = `locale=${saved}; path=/; max-age=31536000`
+      }
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  const tr = useMemo(() => getTranslations(locale), [locale])
+  const tr = useMemo(() => {
+    return translations[locale] || translations.ar
+  }, [locale])
 
-  const setLocale = (l: Locale) => setLocaleState(l)
+  const value = useMemo(() => ({ locale, setLocale, tr }), [locale, tr])
 
-  const value: I18nCtx = { locale, dir, tr, setLocale }
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }
 
 export function useI18n() {
-  const ctx = useContext(Ctx)
+  const ctx = useContext(I18nContext)
   if (!ctx) throw new Error("useI18n must be used within I18nProvider")
   return ctx
-}
-
-export function LangSwitcher({ className = "" }: { className?: string }) {
-  const { locale, setLocale, tr } = useI18n()
-
-  return (
-    <select
-      value={locale}
-      onChange={(e) => setLocale(e.target.value as Locale)}
-      className={`bggggg text-sm px-2 py-[6px] rounded-md border ${className}`}
-      aria-label="Switch language"
-    >
-      <option value="ar">{tr.lang.ar}</option>
-      <option value="en">{tr.lang.en}</option>
-      <option value="fr">{tr.lang.fr}</option>
-    </select>
-  )
 }

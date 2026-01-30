@@ -5,7 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { LangSwitcher, useI18n } from "@/components/I18nProvider"
+import LangSwitcher from "@/components/LangSwitcher"
+import { useI18n } from "@/components/I18nProvider"
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
