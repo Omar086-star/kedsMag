@@ -1,3 +1,5 @@
+//app/services/page.tsx
+
 import Link from "next/link"
 import { Calendar, ArrowRight, BookOpen, Users, Award, CheckCircle } from "lucide-react"
 

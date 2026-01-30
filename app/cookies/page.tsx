@@ -8,12 +8,10 @@ import { useI18n } from "@/components/I18nProvider"
 type Doc = {
   title: string
   subtitle?: string
-  updated?: string
   sections?: { title: string; body: string }[]
-  contact?: { title: string; emailLabel: string; email: string }
 }
 
-export default function LegalPage() {
+export default function CookiesPolicyPage() {
   const { locale } = useI18n()
   const dir = locale === "ar" ? "rtl" : "ltr"
 
@@ -28,7 +26,7 @@ export default function LegalPage() {
       const { data, error } = await supabase
         .from("i18n_documents")
         .select("content")
-        .eq("namespace", "legal")
+        .eq("namespace", "cookies")
         .eq("locale", locale)
         .single()
 
@@ -55,8 +53,7 @@ export default function LegalPage() {
         {doc && (
           <>
             <h1 className="text-3xl font-bold mb-2">{doc.title}</h1>
-            {doc.subtitle && <p className="text-muted-foreground mb-2">{doc.subtitle}</p>}
-            {doc.updated && <p className="text-sm text-muted-foreground mb-8">{doc.updated}</p>}
+            {doc.subtitle && <p className="text-muted-foreground mb-8">{doc.subtitle}</p>}
 
             <div className="space-y-6">
               {(doc.sections || []).map((s, i) => (
@@ -66,18 +63,6 @@ export default function LegalPage() {
                 </section>
               ))}
             </div>
-
-            {doc.contact && (
-              <section className="mt-8 p-6 rounded-2xl bg-muted/50">
-                <h3 className="text-xl font-bold mb-2">{doc.contact.title}</h3>
-                <p className="leading-relaxed">
-                  <span className="font-semibold">{doc.contact.emailLabel} </span>
-                  <a className="text-primary underline" href={`mailto:${doc.contact.email}`}>
-                    {doc.contact.email}
-                  </a>
-                </p>
-              </section>
-            )}
           </>
         )}
       </main>

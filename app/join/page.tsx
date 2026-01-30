@@ -1,3 +1,5 @@
+//app/join/page.tsx
+
 import Image from "next/image"
 import { Heart, Users, Globe, Mail, Phone } from "lucide-react"
 

@@ -1,62 +1,66 @@
-"use client";
+// app/activities/distreption/page.tsx
+"use client"
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
-import Image from "next/image";
-import ReactPlayer from "react-player";
-import { Dialog } from "@headlessui/react";
-import { X } from "lucide-react";
-import FloatingBox from '@/components/FloatingBox';
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase"
+import Image from "next/image"
+import ReactPlayer from "react-player"
+import { Dialog } from "@headlessui/react"
+import { X } from "lucide-react"
+import FloatingBox from "@/components/FloatingBox"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
-
+import { useI18n } from "@/components/I18nProvider"
 
 export default function DistributionActivitiesPage() {
-const [images, setImages] = useState<any[]>([]);
-const [videos, setVideos] = useState<any[]>([]);
-const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const { tr } = useI18n()
+
+  const [images, setImages] = useState<any[]>([])
+  const [videos, setVideos] = useState<any[]>([])
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
-    const { data: imgData, error: imgError } = await supabase
-    .from("distribution")
-    .select("*")
-    .eq("type", "image")
-    .eq("status", "Published")
-    .order("id", { ascending: false });
+      const { data: imgData, error: imgError } = await supabase
+        .from("distribution")
+        .select("*")
+        .eq("type", "image")
+        .eq("status", "Published")
+        .order("id", { ascending: false })
 
       const { data: vidData, error: vidError } = await supabase
         .from("distribution")
         .select("*")
         .eq("type", "video")
         .eq("status", "Published")
-        .order("id", { ascending: false });
+        .order("id", { ascending: false })
 
       if (imgError || vidError) {
-        console.error("Error fetching data:", imgError || vidError);
-        return;
+        console.error("Error fetching data:", imgError || vidError)
+        return
       }
 
-      setImages(imgData || []);
-      setVideos(vidData || []);
-    };
+      setImages(imgData || [])
+      setVideos(vidData || [])
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100   ">
-        <Header />
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
+      <Header />
 
       <h1 className="text-4xl font-bold text-center text-purple-800 mb-10 py-10">
-        📦 نشاطات التوزيع
+        {tr.distributionPage.title}
       </h1>
 
       {/* قسم الصور */}
       <section className="mb-16">
         <h2 className="textPa py-10 font-semibold text-orange-600 mb-6 text-center">
-          📸 صور التوزيع
+          {tr.distributionPage.imagesTitle}
         </h2>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {images.map((img) => (
             <div
@@ -66,7 +70,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
             >
               <Image
                 src={img.cover_url || img.file_url}
-                alt={img.title || "صورة توزيع"}
+                alt={img.title || tr.distributionPage.imageAltFallback}
                 width={300}
                 height={200}
                 className="rounded-md object-cover w-full h-48"
@@ -74,8 +78,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
               <div className="mt-2 px-1">
                 <p className="font-semibold text-sm text-purple-800 truncate">{img.title}</p>
                 <p className="text-s text-gray-600">{img.description}</p>
-                                <p className="text-s text-gray-600">{img.category}</p>
-
+                <p className="text-s text-gray-600">{img.category}</p>
               </div>
             </div>
           ))}
@@ -83,7 +86,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
       </section>
 
       {/* عرض الصورة المختارة */}
-      <Dialog open={!!selectedImage} onClose={() => setSelectedImage(null)} className="fixed z-50  inset-0">
+      <Dialog open={!!selectedImage} onClose={() => setSelectedImage(null)} className="fixed z-50 inset-0">
         <div className="flex items-center justify-center min-h-screen bg-black bg-opacity-80 py-10">
           <div className="relative max-w-4xl w-full">
             <button onClick={() => setSelectedImage(null)} className="absolute top-2 right-2 text-white">
@@ -92,7 +95,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
             {selectedImage && (
               <Image
                 src={selectedImage}
-                alt="عرض موسع"
+                alt={tr.distributionPage.expandedAlt}
                 width={800}
                 height={600}
                 className="rounded-lg mx-auto"
@@ -104,30 +107,26 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
       {/* قسم الفيديوهات */}
       <section>
-        <h2 className=" textPa  font-semibold text-orange-600 mb-6 text-center">
-          🎥 فيديوهات التوزيع
+        <h2 className="textPa font-semibold text-orange-600 mb-6 text-center">
+          {tr.distributionPage.videosTitle}
         </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-4 py-10 gap-6">
           {videos.map((vid) => (
-            <div
-              key={vid.id}
-              className="bg-white rounded-xl shadow p-2 hover:shadow-md transition"
-            >
+            <div key={vid.id} className="bg-white rounded-xl shadow p-2 hover:shadow-md transition">
               <ReactPlayer url={vid.file_url} controls width="100%" height="200px" />
               <div className="mt-2 px-1">
                 <p className="font-semibold text-sm text-purple-800 truncate">{vid.title}</p>
                 <p className="text-s text-gray-600">{vid.description}</p>
                 <p className="text-s text-gray-600">{vid.category}</p>
-
               </div>
             </div>
           ))}
         </div>
-    </section>
+      </section>
 
-<FloatingBox />
-<Footer />
-
+      <FloatingBox />
+      <Footer />
     </div>
-  );
+  )
 }

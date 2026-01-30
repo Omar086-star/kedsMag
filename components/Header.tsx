@@ -1,67 +1,107 @@
-// components/Header.tsx
-"use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { LangSwitcher } from "@/components/AITranslateProvider";
+"use client"
+
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Menu, X } from "lucide-react"
+import { LangSwitcher, useI18n } from "@/components/I18nProvider"
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  const { tr } = useI18n()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // ✅ يمنع Hydration mismatch
+  if (!mounted) return null
 
   return (
     <header className="sticky top-0 z-40 bg-[#3b00cc] backdrop-blur-sm border-purple-900 shadow-lg">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="شعار المجلة" width={100} height={100} className="object-contain" />
+          <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={100}
+              height={100}
+              className="object-contain"
+            />
           </Link>
 
-          {/* روابط + زر اللغة للديسكتوب */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
-            {navLinks()}
+            {navLinks(tr, () => setMenuOpen(false))}
             <LangSwitcher className="ml-2" />
           </nav>
 
-          {/* زر فتح القائمة للموبايل */}
+          {/* Mobile Button */}
           <div className="md:hidden flex items-center gap-3">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X className="text-white w-8 h-8" /> : <Menu className="text-white w-8 h-8" />}
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+            >
+              {menuOpen ? (
+                <X className="text-white w-8 h-8" />
+              ) : (
+                <Menu className="text-white w-8 h-8" />
+              )}
             </button>
           </div>
         </div>
 
-        {/* القائمة المنسدلة للموبايل */}
+        {/* Mobile Nav */}
         {menuOpen && (
           <nav className="md:hidden bg-[#3b00cc] text-white px-6 py-4 space-y-4 shadow-lg">
-            {navLinks()}
+            {navLinks(tr, () => setMenuOpen(false))}
             <LangSwitcher className="w-full" />
-            <Link href="/activities#activitéAvenire">
+            <Link href="/activities#activitéAvenire" onClick={() => setMenuOpen(false)}>
               <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-6 py-2 font-bold shadow-lg">
-                فعالياتنا القادمة
+                {tr.nav.upcoming}
               </Button>
             </Link>
           </nav>
         )}
       </div>
     </header>
-  );
+  )
 }
 
-function navLinks() {
+function navLinks(tr: any, closeMenu: () => void) {
   return (
     <>
-      <Link href="/" className="hover:text-orange-300 textreddd transition-colors">الرئيسية</Link>
-      <Link href="/about" className="hover:text-orange-300 textreddd transition-colors">فريق العمل</Link>
-      <Link href="/aboutUS" className="hover:text-orange-300 textreddd transition-colors">عن المجلة</Link>
-      <Link href="/projects" className="hover:text-orange-300 textreddd transition-colors">مشاريعنا</Link>
-      <Link href="/editions" className="hover:text-orange-300 textreddd transition-colors">إصداراتنا</Link>
-      <Link href="/activities" className="hover:text-orange-300 textreddd transition-colors">الأنشطة</Link>
-      <Link href="/gallery" className="hover:text-orange-300 textreddd textredddtransition-colors">معرض الصور</Link>
-      <Link href="/contact" className="hover:text-orange-300 textreddd transition-colors">اتصل بنا</Link>
-      <Link href="/speditions" className="hover:text-orange-300 textreddd transition-colors">خاص بنا</Link>
-      
-      </>
-  );
+      <Link href="/" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.home}
+      </Link>
+      <Link href="/about" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.team}
+      </Link>
+      <Link href="/aboutUS" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.about}
+      </Link>
+      <Link href="/projects" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.projects}
+      </Link>
+      <Link href="/editions" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.editions}
+      </Link>
+      <Link href="/activities" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.activities}
+      </Link>
+      <Link href="/gallery" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.gallery}
+      </Link>
+      <Link href="/contact" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.contact}
+      </Link>
+      <Link href="/speditions" onClick={closeMenu} className="hover:text-orange-300 textreddd transition-colors">
+        {tr.nav.special}
+      </Link>
+    </>
+  )
 }

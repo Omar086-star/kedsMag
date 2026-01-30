@@ -1,101 +1,142 @@
-// app/projects/[id]/page.tsx
+// app/projects/page.tsx
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams } from "next/navigation"
-import { supabase } from "@/lib/supabase"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import FloatingBox from "@/components/FloatingBox"
+import { useI18n } from "@/components/I18nProvider"
 
-export default function ProjectDetailsPage() {
-  const { id } = useParams()
-  const [project, setProject] = useState<any>(null)
+export default function ProjectsPage() {
+  const { tr, locale } = useI18n()
+  const [projects, setProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchProject = async () => {
-      const { data, error } = await supabase
-        .from("projects")
-        .select("id, title, date, location, participants, category, image, file_url")
-        .eq("id", id)
-        .single()
+useEffect(() => {
+  const fetchProjects = async () => {
+    const { data, error } = await supabase
+      .from("projects")
+      .select("id, title_ar, title_fr, title_en, date, location, participants, category, image, file_url")
 
-      if (error) {
-        console.error("خطأ في جلب المشروع:", error)
-      } else {
-        setProject(data)
-      }
+    if (error) {
+      console.error("Error fetching projects:", error)
       setLoading(false)
+      return
     }
 
-    if (id) fetchProject()
-  }, [id])
+    // تحويل ديناميكي بالواجهة (خفيف ومباشر)
+    const mapped = (data || []).map((p: any) => ({
+      ...p,
+      title: p[`title_${locale}`] || p.title_ar || p.title_en || p.title_fr || "",
+    }))
 
-  if (loading) {
-    return <div className="text-center py-20 text-lg">جاري تحميل المشروع...</div>
+    setProjects(mapped)
+    setLoading(false)
   }
 
-  if (!project) {
-    return <div className="text-center py-20 text-red-600">تعذر العثور على هذا المشروع.</div>
-  }
+  fetchProjects()
+}, [locale])
+
 
   return (
-    <div className="min-h-screen  px-6">
-            <Header />
+    <main className="flex-1">
+      <Header />
 
-      <div className="max-w-3xl py-12 mx-auto">
-        <h1 className="text-4xl font-bold text-center text-purple-800 mb-6">{project.title}</h1>
+      <div className="container mx-auto">
+        <h1 className="text-4xl font-bold text-center py-12 mb-8">{tr.projectsPage.title}</h1>
+        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          {tr.projectsPage.subtitle}
+        </p>
 
-        <div className="relative w-full h-72 mb-6">
-          {project.image && !project.image.endsWith(".pdf") ? (
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover rounded-lg"
-            />
-          ) : (
-            <Image
-              src="/default-cover.png"
-              alt="صورة المشروع"
-              fill
-              className="object-cover rounded-lg"
-            />
-          )}
-        </div>
+        {loading ? (
+          <p className="text-center py-12 text-gray-600">{tr.projectsPage.loading}</p>
+        ) : (
+          <div className="grid grid-cols-1 py-12 md:grid-cols-2 gap-8">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden"
+              >
+                <div className="relative h-64 w-full">
+                  {project.image && !String(project.image).endsWith(".pdf") ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <img
+                      src="/default-cover.png"
+                      alt={tr.projectsPage.defaultCoverAlt}
+                      className="object-cover w-full h-full"
+                    />
+                  )}
 
-        <div className="space-y-4 text-gray-700">
-          <p>📅 التاريخ: {new Date(project.date).toLocaleDateString("ar-EG")}</p>
-          <p>📍 المكان: {project.location}</p>
-          <p>👥 عدد المشاركين: {project.participants}</p>
-          <p>🎨 الفئة: {project.category}</p>
-        </div>
+                  <div className="absolute top-4 right-4">
+                    <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground hover:bg-primary/80 transition-colors">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
 
-        {project.file_url && (
-          <div className="mt-6">
-            <a
-              href={project.file_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline"
-            >
-              📄 عرض الملف الكامل
-            </a>
+                <div className="flex flex-col space-y-1.5 p-6">
+                  <h3 className="text-2xl font-semibold">{project.title}</h3>
+
+                  <div className="text-sm text-muted-foreground mt-2 flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      {tr.projectsPage.date}{" "}
+                      <span>
+                        {project.date
+                          ? new Date(project.date).toLocaleDateString(
+                              locale === "ar" ? "ar-EG" : locale === "fr" ? "fr-FR" : "en-GB"
+                            )
+                          : ""}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {tr.projectsPage.location} <span>{project.location}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {tr.projectsPage.participants} <span>{project.participants}</span>
+                    </div>
+                  </div>
+
+                  {project.file_url && (
+                    <a
+                      href={project.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 underline mt-2"
+                    >
+                      {tr.projectsPage.file}
+                    </a>
+                  )}
+                </div>
+
+                <div className="p-6 pt-0 flex justify-between items-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open(`/projects/${project.id}`, "_blank")}
+                  >
+                    {tr.projectsPage.more}
+                  </Button>
+
+                  <Button onClick={() => window.open(`/projects/${project.id}/register`, "_blank")}>
+                    {tr.projectsPage.register}
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
         )}
-
-        <div className="mt-8 flex justify-center gap-4">
-          <Button variant="outline" onClick={() => window.history.back()}>رجوع</Button>
-         <Button onClick={() => window.open(`/projects/${project.id}/register`, "_blank")}>
-  التسجيل
-</Button>     
-        </div>
       </div>
-            <FloatingBox />
+
+      <FloatingBox />
       <Footer />
-    </div>
+    </main>
   )
 }
